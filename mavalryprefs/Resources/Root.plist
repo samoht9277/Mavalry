@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>items</key>
+	<array>
+
+		<!-- banner -->
+        <dict>
+            <key>cell</key>
+            <string>PSGroupCell</string>
+            <key>headerCellClass</key>
+            <string>BRUHRootHeaderView</string>
+            <key>icon</key>
+            <string>PrefHeader.png</string>
+        </dict>
+
+		<!-- general enable/ disable switch -->
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>io.github.ajaidan.mavalryprefs</string>
+			<key>key</key>
+			<string>isEnabled</string>
+			<key>label</key>
+			<string>Enabled</string>
+			<key>PostNotification</key>
+			<string>io.github.ajaidan.mavalryprefs.settingschanged</string>
+		</dict>
+
+		<!-- general cell -->
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>General</string>
+		</dict>
+
+		<!-- enable/disable button -->
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>io.github.ajaidan.mavalryprefs</string>
+			<key>key</key>
+			<string>hideLabels</string>
+			<key>label</key>
+			<string>Hide Icon Labels</string>
+			<key>PostNotification</key>
+			<string>io.github.ajaidan.mavalryprefs.settingschanged</string>
+		</dict>
+
+		<!-- enable/disable page dots button -->
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>io.github.ajaidan.mavalryprefs</string>
+			<key>key</key>
+			<string>hideDots</string>
+			<key>label</key>
+			<string>Hide Page Dots</string>
+			<key>PostNotification</key>
+			<string>io.github.ajaidan.mavalryprefs.settingschanged</string>
+		</dict>
+
+		<!-- enable/disable transparent dock button -->
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>io.github.ajaidan.mavalryprefs</string>
+			<key>key</key>
+			<string>transDock</string>
+			<key>label</key>
+			<string>Transparent Dock</string>
+			<key>PostNotification</key>
+			<string>io.github.ajaidan.mavalryprefs.settingschanged</string>
+		</dict>
+
+		<!-- apply text label -->
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Apply Changes</string>
+		</dict>
+
+		<!-- respring button -->
+		<dict>
+			<key>action</key>
+			<string>respring</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>label</key>
+			<string>Respring</string>
+		</dict>
+
+		<!-- footer -->
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>About</string>
+			<key>footerText</key>
+			<string>Made with ❤️ by Jaidan A and samoht.</string>
+		</dict>
+
+		<!-- source code button -->
+		<dict>
+			<key>action</key>
+			<string>sourceLink</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>icon</key>
+			<string>GitHub</string>
+			<key>label</key>
+			<string>Source Code</string>
+		</dict>
+
+	</array>
+	<key>title</key>
+	<string>Mavalry</string>
+</dict>
+</plist>

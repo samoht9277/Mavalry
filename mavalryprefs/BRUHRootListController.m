@@ -1,5 +1,6 @@
 #include "BRUHRootListController.h"
 #import <Preferences/PSSpecifier.h>
+#import <AudioToolbox/AudioServices.h>
 
 @implementation BRUHRootListController
 
@@ -21,13 +22,15 @@
         CFNotificationCenterPostNotification(CFNotificationCenterGetDarwinNotifyCenter(), notificationName, NULL, NULL, YES);
     }
 }
-/*
+
 -(void)respring {
-  system("killall -9 SpringBoard");
+  AudioServicesPlaySystemSound(1520);
+  system("killall -9 backboardd");
 }
-*/
+
 - (void)sourceLink {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/ajaidan/mavalry"] options:@{} completionHandler:nil];
+    AudioServicesPlaySystemSound(1520);
 }
 
 - (NSArray *)specifiers {

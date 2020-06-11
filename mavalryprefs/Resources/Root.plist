@@ -87,6 +87,38 @@
 			<string>io.github.ajaidan.mavalryprefs.settingschanged</string>
 		</dict>
 
+		<!-- enable/disable hiding older notifications text -->
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>io.github.ajaidan.mavalryprefs</string>
+			<key>key</key>
+			<string>olderNotifs</string>
+			<key>label</key>
+			<string>Hide Older Notifications Text</string>
+			<key>PostNotification</key>
+			<string>io.github.ajaidan.mavalryprefs.settingschanged</string>
+		</dict>
+
+		<!-- enable/disable hiding homebar -->
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>io.github.ajaidan.mavalryprefs</string>
+			<key>key</key>
+			<string>homeBar</string>
+			<key>label</key>
+			<string>Hide Homebar</string>
+			<key>PostNotification</key>
+			<string>io.github.ajaidan.mavalryprefs.settingschanged</string>
+		</dict>
+
 		<!-- apply text label -->
 		<dict>
 			<key>cell</key>

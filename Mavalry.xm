@@ -6,7 +6,7 @@
 
 - (void)setLabelHidden:(BOOL)arg1 {
 
-  if (hideLabels) {
+  if (hideLabels && isEnabled) {
     return %orig(YES);
 
   } else {
@@ -66,6 +66,35 @@
 
 }
 
+%end
+
+@interface NCNotificationListSectionRevealHintView : UIView
+@property (nonatomic, assign, readwrite, getter = isHidden) BOOL hidden;
+@end
+
+%hook NCNotificationListSectionRevealHintView
+
+  -(void)setFrame:(CGRect)arg1 {
+    if (olderNotifs && isEnabled) {
+	   self.hidden = YES;
+    }else {
+      return %orig;
+    }
+  }
+%end
+
+%hook MTLumaDodgePillSettings
+
+- (void)setHeight: (double)arg {
+
+  if (homeBar && isEnabled) {
+    {
+	     %orig(0);
+     }
+   } else {
+  return %orig;
+  }
+}
 %end
 
 // mas pref junk

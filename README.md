@@ -1,2 +1,2 @@
 # Mavalry
- Springboard customization, as it should be.
+ Springboard customization, done right.

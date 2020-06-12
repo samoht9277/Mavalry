@@ -2,6 +2,28 @@
 #import <Preferences/PSSpecifier.h>
 #import <AudioToolbox/AudioServices.h>
 
+@implementation SpringBoard
+
+- (id)specifiers {
+    if(_specifiers == nil) {
+        _specifiers = [[self loadSpecifiersFromPlistName:@"SpringBoard" target:self] retain];
+    }
+    return _specifiers;
+}
+
+@end
+
+@implementation Lockscreen
+
+- (id)specifiers {
+    if(_specifiers == nil) {
+        _specifiers = [[self loadSpecifiersFromPlistName:@"Lockscreen" target:self] retain];
+    }
+    return _specifiers;
+}
+
+@end
+
 @implementation BRUHRootListController
 
 - (id)readPreferenceValue:(PSSpecifier*)specifier {

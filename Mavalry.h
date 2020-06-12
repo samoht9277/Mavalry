@@ -1,4 +1,4 @@
-#define PLIST_PATH @"/var/mobile/Library/Preferences/io.github.ajaidan.mavalryprefs.plist"
+#define PLIST_PATH @"/var/mobile/Library/Preferences/com.ajaidan.mavalryprefs.plist"
 
 BOOL isEnabled;
 BOOL hideLabels;

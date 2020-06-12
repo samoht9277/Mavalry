@@ -12,6 +12,7 @@ mavalryprefs_FRAMEWORKS = UIKit
 mavalryprefs_PRIVATE_FRAMEWORKS = Preferences
 mavalryprefs_CFLAGS = -fobjc-arc
 
+
 include $(THEOS_MAKE_PATH)/bundle.mk
 
 internal-stage::

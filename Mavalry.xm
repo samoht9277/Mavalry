@@ -6,7 +6,7 @@
 
 - (void)setLabelHidden:(BOOL)arg1 {
 
-  if (hideLabels && isEnabled) {
+  if (wantsHiddenLabels && isEnabled) {
     return %orig(YES);
 
   } else {
@@ -23,7 +23,7 @@
 
 - (id)initWithFrame:(CGRect)frame {
 
-  if (hideDots && isEnabled) {
+  if (wantsHiddenPageDots && isEnabled) {
     return nil; %orig;
 
   } else {
@@ -39,7 +39,7 @@
 
 - (id)initWithFrame:(CGRect)frame {
 
-  if (hideDots && isEnabled) {
+  if (wantsHiddenPageDots && isEnabled) {
     return nil; %orig;
 
   } else {
@@ -56,7 +56,7 @@
 
 - (void)setBackgroundAlpha:(double)arg1 {
 
-  if (transDock && isEnabled) {
+  if (wantsTransparentDock && isEnabled) {
     arg1 = 0/10;
 
   } else {
@@ -78,7 +78,7 @@
 
 -(void)setFrame:(CGRect)arg1 {
 
-  if (olderNotifs && isEnabled) {
+  if (wantsOlderNotifs && isEnabled) {
 	  self.hidden = YES;
 
   } else {
@@ -90,12 +90,12 @@
 
 %end
 
-//homebar hiding
+//wantsHomeBar hiding
 %hook MTLumaDodgePillSettings
 
 - (void)setHeight: (double)arg {
 
-  if (homeBar && isEnabled) {
+  if (wantsHomeBar && isEnabled) {
     %orig(0);
 
   } else {
@@ -106,101 +106,6 @@
 }
 
 %end
-
-//Volume Haptics
-%hook SBVolumeControl
-
-- (void)increaseVolume {
-
-	if (isEnabled && hapticVol) {
-
-		%orig;
-
-		UIImpactFeedbackGenerator *hapt = [[UIImpactFeedbackGenerator alloc] init];
-		[hapt prepare];
-
-		if (hapticPref == 1) {
-			hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleLight]; //Light feedback
-
-		} else if (hapticPref == 2) {
-			hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium]; //Medium feedback
-
-		} else if (hapticPref == 3) {
-			hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleHeavy]; //Heavy feedback
-
-		} else if (hapticPref == 4) {
-			hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleSoft]; //Soft feedback
-
-		} else if (hapticPref == 5) {
-			hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleRigid]; //Rigid feedback
-
-		}
-
-		[hapt impactOccurred];
-
-	} else {
-		return %orig;
-	}
-
-}
-
-- (void)decreaseVolume {
-
-	if (isEnabled && hapticVol) {
-
-		%orig;
-
-		UIImpactFeedbackGenerator *hapt = [[UIImpactFeedbackGenerator alloc] init];
-		[hapt prepare];
-
-		if (hapticPref == 1) {
-			hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleLight]; //Light feedback
-
-		} else if (hapticPref == 2) {
-			hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium]; //Medium feedback
-
-		} else if (hapticPref == 3) {
-			hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleHeavy]; //Heavy feedback
-
-		} else if (hapticPref == 4) {
-			hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleSoft]; //Soft feedback
-
-		} else if (hapticPref == 5) {
-			hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleRigid]; //Rigid feedback
-
-		}
-
-		[hapt impactOccurred];
-
-	} else {
-		return %orig;
-	}
-
-}
-
-//Volume Steps
-- (float)volumeStepUp {
-
-	if (isEnabled && volStep != 0.0) {
-		return (volStep); //possible values from 0.01 -> 1.0
-
-	} else {
-		return %orig; // orig returns 0.6
-	}
-
-}
-
-- (float)volumeStepDown {
-
-	if (isEnabled && volStep != 0.0) {
-		return (volStep); //possible values from 0.01 -> 1.0
-
-	} else {
-		return %orig; // orig returns 0.6
-	}
-
-}
-
 
 %end
 
@@ -220,13 +125,13 @@
 	orig.percentLabel.layer.allowsGroupBlending = NO;
 	orig.percentLabel.layer.allowsGroupOpacity = YES;
 	orig.percentLabel.layer.compositingFilter = kCAFilterDestOut;
-	orig.percentLabel.font = [orig.percentLabel.font fontWithSize:(ccLabelsSize)];
+	orig.percentLabel.font = [orig.percentLabel.font fontWithSize:(CCLabels)];
 	return orig;
 }
 
 - (void)layoutSubviews {
 
-	if (isEnabled && ccLabels) {
+	if (isEnabled && wantsCCLabels) {
 
 		%orig;
 

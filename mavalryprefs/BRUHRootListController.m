@@ -177,7 +177,7 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 }
 
 -(void)viewDidLoad {
-    NSString *path = @"/User/Library/Preferences/com.yourname.yourtweak.plist";
+    NSString *path = @"/var/mobile/Library/Preferences/com.ajaidan.mavalryprefs.plist";
     NSMutableDictionary *settings = [NSMutableDictionary dictionary];
     [settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];
     NSNumber *didShowOBWelcomeController = [settings valueForKey:@"didShowOBWelcomeController"] ?: @0;
@@ -188,7 +188,7 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 }
 
 -(void)dismissWelcomeController {
-    NSString *path = @"/var/mobile/Library/Preferences/com.ajaidan.mavalryprefs.plist/var/mobile/Library/Preferences/com.ajaidan.mavalryprefs.plist";
+    NSString *path = @"/var/mobile/Library/Preferences/com.ajaidan.mavalryprefs.plist";
     NSMutableDictionary *settings = [NSMutableDictionary dictionary];
     [settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];
     [settings setObject:@1 forKey:@"didShowOBWelcomeController"];

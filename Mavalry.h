@@ -28,7 +28,6 @@ int ccLabelsSize; //cc labels size
 BOOL hapticVol; //enables-disables haptics when volume buttons are pressed
 float hapticPref; //haptics strength
 float volStep; //volume percentage steps
-BOOL scrollsTop;
 
 static void loadPrefs() {
     NSMutableDictionary *prefs = [[NSMutableDictionary alloc] initWithContentsOfFile:PLIST_PATH];

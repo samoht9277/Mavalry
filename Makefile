@@ -13,4 +13,5 @@ Tweak.xm_CFLAGS = -fobjc-arc
 
 include $(THEOS_MAKE_PATH)/tweak.mk
 SUBPROJECTS += mavalryprefs
+SUBPROJECTS += nomorescrollstotop
 include $(THEOS_MAKE_PATH)/aggregate.mk

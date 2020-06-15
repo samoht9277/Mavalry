@@ -77,7 +77,7 @@
 			<key>defaults</key>
 			<string>com.ajaidan.mavalryprefs</string>
 			<key>key</key>
-			<string>volStep</string>
+			<string>volumeStep</string>
 			<key>min</key>
 			<real>0</real>
 			<key>max</key>

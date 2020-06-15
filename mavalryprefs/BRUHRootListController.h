@@ -16,6 +16,10 @@
 }
 @end
 
+@interface Volume : PSListController {
+}
+@end
+
 @interface Applications : PSListController {
 }
 @end

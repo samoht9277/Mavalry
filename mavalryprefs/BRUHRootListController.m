@@ -54,6 +54,17 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 
 @end
 
+@implementation Volume
+
+- (id)specifiers {
+    if(_specifiers == nil) {
+        _specifiers = [self loadSpecifiersFromPlistName:@"Volume" target:self];
+    }
+    return _specifiers;
+}
+
+@end
+
 @implementation Applications
 
 - (id)specifiers {
@@ -116,6 +127,10 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 	}
 
 	return _specifiers;
+}
+
+- (void)save{
+    [self.view endEditing:YES];
 }
 
 - (void)respringPrompt {

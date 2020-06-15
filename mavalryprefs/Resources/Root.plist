@@ -69,16 +69,6 @@
 			<string>Control Center</string>
 		</dict>
 
-		<!-- Volume subPref -->
-		<dict>
-			<key>cell</key>
-			<string>PSLinkCell</string>
-			<key>detail</key>
-			<string>Volume</string>
-			<key>label</key>
-			<string>Volume</string>
-		</dict>
-
 		<!-- Applications subPref -->
 		<dict>
 			<key>cell</key>

@@ -21,6 +21,13 @@
 			<string>com.ajaidan.mavalryprefs.settingschanged</string>
 		</dict>
 
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Label size</string>
+		</dict>
+
         <!-- CC labels size slider -->
 		<dict>
 			<key>cell</key>
@@ -32,21 +39,21 @@
 			<key>key</key>
 			<string>ccLabelsSize</string>
 			<key>min</key>
-			<real>10</real>
+			<real>5</real>
 			<key>max</key>
-			<real>30</real>
+			<real>20</real>
 			<key>showValue</key>
 			<true/>
 			<key>isSegmented</key>
 			<true/>
 			<key>segmentCount</key>
-			<integer>4</integer>
+			<integer>3</integer>
 			<key>PostNotification</key>
 			<string>com.ajaidan.mavalryprefs.settingschanged</string>
 		</dict>
 
     </array>
 	<key>title</key>
-	<string>Control Center</string>
+	<string>CC</string>
 </dict>
 </plist>

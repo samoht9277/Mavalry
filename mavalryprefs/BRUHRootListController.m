@@ -41,6 +41,15 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
     return _specifiers;
 }
 
+@implementation CC
+
+- (id)specifiers {
+    if(_specifiers == nil) {
+        _specifiers = [self loadSpecifiersFromPlistName:@"CC" target:self];
+    }
+    return _specifiers;
+}
+
 @end
 
 @implementation BRUHRootListController

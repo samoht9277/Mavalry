@@ -98,7 +98,7 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
     [welcomeController addBulletedListItemWithTitle:@"Simple" description:@"Made with simplicity in mind." image:[UIImage systemImageNamed:@"gear"]];
     [welcomeController addBulletedListItemWithTitle:@"Elegant" description:@"Built to fullfill its purpose easily." image:[UIImage systemImageNamed:@"gear"]];
     [welcomeController addBulletedListItemWithTitle:@"Optimized" description:@"Extensively tested for battery drain." image:[UIImage systemImageNamed:@"gear"]];
-    [welcomeController.buttonTray addCaptionText:@"made with ❤️ by Jaidan A and samoht"];
+    [welcomeController.buttonTray addCaptionText:@"Made with ❤️ by Jaidan A and samoht"];
 
 
     // Create your button here, set some properties, and add it to the controller.

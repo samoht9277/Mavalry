@@ -31,15 +31,25 @@
 			<string>com.ajaidan.mavalryprefs.settingschanged</string>
 		</dict>
 
+		<!-- space between main switch and stuff below -->
 		<dict>
-      <key>cell</key>
-      <string>PSLinkCell</string>
-      <key>detail</key>
-      <string>SpringBoard</string>
-      <key>label</key>
-      <string>SpringBoard</string>
-    </dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string></string>
+		</dict>
 
+		<!-- SpringBoard subPref -->
+		<dict>
+			<key>cell</key>
+			<string>PSLinkCell</string>
+			<key>detail</key>
+			<string>SpringBoard</string>
+			<key>label</key>
+			<string>SpringBoard</string>
+		</dict>
+
+		<!--LockScreen subPref -->
 		<dict>
 			<key>cell</key>
 			<string>PSLinkCell</string>
@@ -47,6 +57,16 @@
 			<string>Lockscreen</string>
 			<key>label</key>
 			<string>Lockscreen</string>
+		</dict>
+
+		<!-- CC subPref -->
+		<dict>
+			<key>cell</key>
+			<string>PSLinkCell</string>
+			<key>detail</key>
+			<string>CC</string>
+			<key>label</key>
+			<string>Control Center</string>
 		</dict>
 
 		<!-- apply text label -->

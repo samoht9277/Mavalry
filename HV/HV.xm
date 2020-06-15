@@ -2,16 +2,15 @@
 //
 // HV,
 // tweak made by samoht.
-// 
+//
 //
 
 #import "HV.h"
-#import "Mavalry.h"
 
-%hook SBVolumeControl 
+%hook SBVolumeControl
 
 - (void)increaseVolume {
-	
+
 	if (isEnabled && wantsHapticVol) {
 
 		%orig;
@@ -35,17 +34,17 @@
 			hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleRigid]; //Rigid feedback
 
 		}
-			
+
 		[hapt impactOccurred];
 
 	} else {
 		return %orig;
 	}
-	
+
 }
 
 - (void)decreaseVolume {
-	
+
 	if (isEnabled && wantsHapticVol) {
 
 		%orig;
@@ -69,13 +68,13 @@
 			hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleRigid]; //Rigid feedback
 
 		}
-			
+
 		[hapt impactOccurred];
 
 	} else {
 		return %orig;
 	}
-	
+
 }
 
 - (float)volumeStepUp {
@@ -86,7 +85,7 @@
 	} else {
 		return %orig; // orig returns 0.6
 	}
-	
+
 }
 
 - (float)volumeStepDown {
@@ -97,7 +96,7 @@
 	} else {
 		return %orig; // orig returns 0.6
 	}
-	
+
 }
 
 

@@ -37,7 +37,7 @@
 			<key>defaults</key>
 			<string>com.ajaidan.mavalryprefs</string>
 			<key>key</key>
-			<string>CCLabels</string>
+			<string>CCLabelsSize</string>
 			<key>min</key>
 			<real>5</real>
 			<key>max</key>

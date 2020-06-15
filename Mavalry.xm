@@ -107,9 +107,6 @@
 
 %end
 
-%end
-
-
 //CC percentage labels
 %hook CCUIBaseSliderView
 
@@ -125,7 +122,7 @@
 	orig.percentLabel.layer.allowsGroupBlending = NO;
 	orig.percentLabel.layer.allowsGroupOpacity = YES;
 	orig.percentLabel.layer.compositingFilter = kCAFilterDestOut;
-	orig.percentLabel.font = [orig.percentLabel.font fontWithSize:(CCLabels)];
+	orig.percentLabel.font = [orig.percentLabel.font fontWithSize:(CCLabelsSize)];
 	return orig;
 }
 

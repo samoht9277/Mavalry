@@ -20,7 +20,7 @@
 			<key>defaults</key>
 			<string>com.ajaidan.mavalryprefs</string>
 			<key>key</key>
-			<string>hideLabels</string>
+			<string>wantsHiddenLabels</string>
 			<key>label</key>
 			<string>Hide Icon Labels</string>
 			<key>PostNotification</key>
@@ -36,7 +36,7 @@
 			<key>defaults</key>
 			<string>com.ajaidan.mavalryprefs</string>
 			<key>key</key>
-			<string>hideDots</string>
+			<string>wantsHiddenPageDots</string>
 			<key>label</key>
 			<string>Hide Page Dots</string>
 			<key>PostNotification</key>
@@ -52,14 +52,14 @@
 			<key>defaults</key>
 			<string>com.ajaidan.mavalryprefs</string>
 			<key>key</key>
-			<string>transDock</string>
+			<string>wantsTransparentDock</string>
 			<key>label</key>
 			<string>Transparent Dock</string>
 			<key>PostNotification</key>
 			<string>com.ajaidan.mavalryprefs.settingschanged</string>
 		</dict>
 
-		<!-- enable/disable hiding homebar -->
+		<!-- enable/disable hiding wantsHomeBar -->
 		<dict>
 			<key>cell</key>
 			<string>PSSwitchCell</string>
@@ -68,9 +68,9 @@
 			<key>defaults</key>
 			<string>com.ajaidan.mavalryprefs</string>
 			<key>key</key>
-			<string>homeBar</string>
+			<string>wantsHomeBar</string>
 			<key>label</key>
-			<string>Hide Homebar</string>
+			<string>Hide wantsHomeBar</string>
 			<key>PostNotification</key>
 			<string>com.ajaidan.mavalryprefs.settingschanged</string>
 		</dict>

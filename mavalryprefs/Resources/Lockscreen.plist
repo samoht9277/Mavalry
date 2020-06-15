@@ -21,7 +21,7 @@
 			<key>defaults</key>
 			<string>com.ajaidan.mavalryprefs</string>
 			<key>key</key>
-			<string>olderNotifs</string>
+			<string>wantsOlderNotifs</string>
 			<key>label</key>
 			<string>Hide Older Notifications Text</string>
 			<key>PostNotification</key>

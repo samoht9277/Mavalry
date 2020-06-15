@@ -14,7 +14,7 @@
 			<key>defaults</key>
 			<string>com.ajaidan.mavalryprefs</string>
 			<key>key</key>
-			<string>ccLabels</string>
+			<string>wantsCCLabels</string>
 			<key>label</key>
 			<string>Add percentage labels for CC sliders</string>
 			<key>PostNotification</key>
@@ -37,7 +37,7 @@
 			<key>defaults</key>
 			<string>com.ajaidan.mavalryprefs</string>
 			<key>key</key>
-			<string>ccLabelsSize</string>
+			<string>CCLabels</string>
 			<key>min</key>
 			<real>5</real>
 			<key>max</key>

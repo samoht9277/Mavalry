@@ -14,7 +14,7 @@
 			<key>defaults</key>
 			<string>com.ajaidan.mavalrypref</string>
 			<key>key</key>
-			<string>hapticVol</string>
+			<string>wantsHapticVol</string>
 			<key>label</key>
 			<string>Enabled</string>
 			<key>PostNotification</key>
@@ -38,7 +38,7 @@
 			<key>defaults</key>
 			<string>com.ajaidan.mavalrypref</string>
 			<key>key</key>
-			<string>hapticPref</string>
+			<string>hapticStrength</string>
 			<key>validValues</key>
 			<array>
 				<integer>1</integer>

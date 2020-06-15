@@ -1,5 +1,4 @@
 #import "Mavalry.h"
-// contains pref rules + some other stuff
 
 // app label hiding
 %hook SBIconView
@@ -38,14 +37,12 @@
 %hook CSPageControl
 
 - (id)initWithFrame:(CGRect)frame {
-
-  if (wantsHiddenPageDots && isEnabled) {
-    return nil; %orig;
-
-  } else {
-    return %orig;
-
-  }
+	if (wantsHiddenPageDots && isEnabled) {
+    	return nil; %orig;
+	
+	} else {
+    	return %orig;
+	}
 
 }
 
@@ -56,13 +53,13 @@
 
 - (void)setBackgroundAlpha:(double)arg1 {
 
-  if (wantsTransparentDock && isEnabled) {
-    arg1 = 0/10;
+	if (wantsTransparentDock && isEnabled) {
+    	arg1 = 0/10;
+	
+	} else {
+    	return %orig;
+	}
 
-  } else {
-    return %orig;
-
-  }
   %orig(arg1);
 
 }
@@ -78,13 +75,12 @@
 
 -(void)setFrame:(CGRect)arg1 {
 
-  if (wantsOlderNotifs && isEnabled) {
-	  self.hidden = YES;
-
-  } else {
-    return %orig;
-
-  }
+	if (wantsOlderNotifs && isEnabled) {
+		self.hidden = YES;
+	
+	} else {
+    	return %orig;
+	}
 
 }
 
@@ -95,13 +91,107 @@
 
 - (void)setHeight: (double)arg {
 
-  if (wantsHomeBar && isEnabled) {
-    %orig(0);
+	if (wantsHomeBar && isEnabled) {
+    	%orig(0);
+	
+	} else {
+    	return %orig;
+	}
 
-  } else {
-    return %orig;
+}
 
-  }
+%end
+
+%hook SBVolumeControl
+
+- (void)increaseVolume {
+
+	if (isEnabled && wantsHapticVol) {
+
+		%orig;
+
+		UIImpactFeedbackGenerator *hapt = [[UIImpactFeedbackGenerator alloc] init];
+		[hapt prepare];
+
+		if (hapticStrength == 1) {
+			hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleLight]; //Light feedback
+
+		} else if (hapticStrength == 2) {
+			hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium]; //Medium feedback
+
+		} else if (hapticStrength == 3) {
+			hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleHeavy]; //Heavy feedback
+
+		} else if (hapticStrength == 4) {
+			hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleSoft]; //Soft feedback
+
+		} else if (hapticStrength == 5) {
+			hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleRigid]; //Rigid feedback
+
+		}
+
+		[hapt impactOccurred];
+
+	} else {
+		return %orig;
+	}
+
+}
+
+//haptics and steps
+- (void)decreaseVolume {
+
+	if (isEnabled && wantsHapticVol) {
+
+		%orig;
+
+		UIImpactFeedbackGenerator *hapt = [[UIImpactFeedbackGenerator alloc] init];
+		[hapt prepare];
+
+		if (hapticStrength == 1) {
+			hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleLight]; //Light feedback
+
+		} else if (hapticStrength == 2) {
+			hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium]; //Medium feedback
+
+		} else if (hapticStrength == 3) {
+			hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleHeavy]; //Heavy feedback
+
+		} else if (hapticStrength == 4) {
+			hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleSoft]; //Soft feedback
+
+		} else if (hapticStrength == 5) {
+			hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleRigid]; //Rigid feedback
+
+		}
+
+		[hapt impactOccurred];
+
+	} else {
+		return %orig;
+	}
+
+}
+
+- (float)volumeStepUp {
+
+	if (isEnabled && volumeStep != 0.0) {
+		return (volumeStep);
+
+	} else {
+		return %orig;
+	}
+
+}
+
+- (float)volumeStepDown {
+
+	if (isEnabled && volumeStep != 0.0) {
+		return (volumeStep);
+
+	} else {
+		return %orig;
+	}
 
 }
 
@@ -110,7 +200,7 @@
 //CC percentage labels
 %hook CCUIBaseSliderView
 
-%property (nonatomic, retain) UILabel *percentLabel;
+	%property (nonatomic, retain) UILabel *percentLabel;
 
 - (id)initWithFrame:(CGRect)frame {
 	CCUIBaseSliderView *orig = %orig;

@@ -1,5 +1,8 @@
 #define PLIST_PATH @"/var/mobile/Library/Preferences/com.ajaidan.mavalryprefs.plist"
 
+// taptic generator
+UIImpactFeedbackGenerator *hapt;
+
 //cc stuff
 extern NSString* const kCAFilterDestOut;
 
@@ -14,26 +17,28 @@ extern NSString* const kCAFilterDestOut;
 @property (nonatomic, assign) BOOL allowsGroupBlending;
 @end
 
-// taptic generator
-UIImpactFeedbackGenerator *hapt;
-
 //main switch
 BOOL isEnabled;
 
-//bools
-BOOL wantsCCLabels, wantsHomeBar, wantsOlderNotifs, wantsTransparentDock, wantsHiddenPageDots, wantsHiddenLabels;
+//booleans
+BOOL wantsCCLabels, wantsHomeBar, wantsOlderNotifs, wantsTransparentDock, wantsHiddenPageDots, wantsHiddenLabels, wantsHapticVol;
 
 //values
-int CCLabelsSize; //cc labels size
+int CCLabelsSize;
+int hapticStrength;
+float volumeStep;
 
 static void loadPrefs() {
     NSMutableDictionary *prefs = [[NSMutableDictionary alloc] initWithContentsOfFile:PLIST_PATH];
     isEnabled = [prefs objectForKey:@"isEnabled"] ? [[prefs objectForKey:@"isEnabled"] boolValue] : YES;
-    wantsHiddenLabels = [prefs objectForKey:@"wantsHiddenLabels"] ? [[prefs objectForKey:@"wantsHiddenLabels"] boolValue] : YES;
-    wantsHiddenPageDots = [prefs objectForKey:@"wantsHiddenPageDots"] ? [[prefs objectForKey:@"wantsHiddenPageDots"] boolValue] : YES;
-    wantsTransparentDock = [prefs objectForKey:@"wantsTransparentDock"] ? [[prefs objectForKey:@"wantsTransparentDock"] boolValue] : YES;
-    wantsOlderNotifs = [prefs objectForKey:@"wantsOlderNotifs"] ? [[prefs objectForKey:@"wantsOlderNotifs"] boolValue] : YES;
-    wantsHomeBar = [prefs objectForKey:@"wantsHomeBar"] ? [[prefs objectForKey:@"wantsHomeBar"] boolValue] : YES;
     wantsCCLabels = [prefs objectForKey:@"wantsCCLabels"] ? [[prefs objectForKey:@"wantsCCLabels"] boolValue] : YES;
+    wantsHomeBar = [prefs objectForKey:@"wantsHomeBar"] ? [[prefs objectForKey:@"wantsHomeBar"] boolValue] : YES;
+    wantsOlderNotifs = [prefs objectForKey:@"wantsOlderNotifs"] ? [[prefs objectForKey:@"wantsOlderNotifs"] boolValue] : YES;
+    wantsTransparentDock = [prefs objectForKey:@"wantsTransparentDock"] ? [[prefs objectForKey:@"wantsTransparentDock"] boolValue] : YES;
+    wantsHiddenPageDots = [prefs objectForKey:@"wantsHiddenPageDots"] ? [[prefs objectForKey:@"wantsHiddenPageDots"] boolValue] : YES;
+    wantsHiddenLabels = [prefs objectForKey:@"wantsHiddenLabels"] ? [[prefs objectForKey:@"wantsHiddenLabels"] boolValue] : YES;
+    wantsHapticVol = [prefs objectForKey:@"wantsHapticVol"] ? [[prefs objectForKey:@"wantsHapticVol"] boolValue] : YES;
     CCLabelsSize = [[prefs objectForKey:@"CCLabelsSize"] intValue];
+    hapticStrength = [[prefs objectForKey:@"hapticStrength"] intValue];
+    volumeStep = [[prefs objectForKey:@"volumeStep"] floatValue];
 }

@@ -108,10 +108,10 @@
 %end
 
 //Volume Haptics
-%hook SBVolumeControl 
+%hook SBVolumeControl
 
 - (void)increaseVolume {
-	
+
 	if (isEnabled && hapticVol) {
 
 		%orig;
@@ -135,17 +135,17 @@
 			hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleRigid]; //Rigid feedback
 
 		}
-			
+
 		[hapt impactOccurred];
 
 	} else {
 		return %orig;
 	}
-	
+
 }
 
 - (void)decreaseVolume {
-	
+
 	if (isEnabled && hapticVol) {
 
 		%orig;
@@ -169,13 +169,13 @@
 			hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleRigid]; //Rigid feedback
 
 		}
-			
+
 		[hapt impactOccurred];
 
 	} else {
 		return %orig;
 	}
-	
+
 }
 
 //Volume Steps
@@ -187,7 +187,7 @@
 	} else {
 		return %orig; // orig returns 0.6
 	}
-	
+
 }
 
 - (float)volumeStepDown {
@@ -198,7 +198,7 @@
 	} else {
 		return %orig; // orig returns 0.6
 	}
-	
+
 }
 
 
@@ -238,7 +238,7 @@
 					if ([self.percentLabel superview]) [self.percentLabel removeFromSuperview];
 					[glyphView addSubview:self.percentLabel];
 				}
-				
+
 				if ([self.percentLabel superview] == glyphView) {
 					self.percentLabel.layer.allowsGroupBlending = NO;
 					self.percentLabel.layer.allowsGroupOpacity = YES;
@@ -266,31 +266,6 @@
 }
 
 %end
-
-%hook UIScrollView
-
--(id)initWithFrame:(CGRect)frame {
-	if (scrollsTop && isEnabled) {
-    	self = %orig;
-    	self.scrollsToTop = false;
-    	return self;
-	} else {
-		return %orig;
-	}
-}
-
--(id)initWithCoder:(id)arg1 {
-	if (scrollsTop && isEnabled) {
-    	self = %orig;
-    	self.scrollsToTop = false;
-    	return self;
-	} else {
-		return %orig;
-	}
-}
-
-%end
-
 
 // mas pref junk
 %ctor {

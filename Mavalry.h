@@ -42,5 +42,4 @@ static void loadPrefs() {
     hapticVol = [prefs objectForKey:@"hapticVol"] ? [[prefs objectForKey:@"hapticVol"] boolValue] : YES;
     hapticPref = [[prefs objectForKey:@"hapticPref"] floatValue];
     volStep = [[prefs objectForKey:@"volStep"] floatValue];
-    scrollsTop = [prefs objectForKey:@"scrollsTop"] ? [[prefs objectForKey:@"scrollsTop"] boolValue] : YES;
 }

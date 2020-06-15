@@ -22,13 +22,13 @@
 			<key>default</key>
 			<true/>
 			<key>defaults</key>
-			<string>io.github.ajaidan.mavalryprefs</string>
+			<string>com.ajaidan.mavalryprefs</string>
 			<key>key</key>
 			<string>isEnabled</string>
 			<key>label</key>
 			<string>Enabled</string>
 			<key>PostNotification</key>
-			<string>io.github.ajaidan.mavalryprefs.settingschanged</string>
+			<string>com.ajaidan.mavalryprefs.settingschanged</string>
 		</dict>
 
 		<dict>

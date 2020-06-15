@@ -19,15 +19,15 @@
 			<key>default</key>
 			<true/>
 			<key>defaults</key>
-			<string>io.github.ajaidan.mavalryprefs</string>
+			<string>com.ajaidan.mavalryprefs</string>
 			<key>key</key>
 			<string>olderNotifs</string>
 			<key>label</key>
 			<string>Hide Older Notifications Text</string>
 			<key>PostNotification</key>
-			<string>io.github.ajaidan.mavalryprefs.settingschanged</string>
+			<string>com.ajaidan.mavalryprefs.settingschanged</string>
 		</dict>
-		
+
 	</array>
 	<key>title</key>
 	<string>Mavalry</string>

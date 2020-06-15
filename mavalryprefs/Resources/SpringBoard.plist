@@ -18,13 +18,13 @@
 			<key>default</key>
 			<true/>
 			<key>defaults</key>
-			<string>io.github.ajaidan.mavalryprefs</string>
+			<string>com.ajaidan.mavalryprefs</string>
 			<key>key</key>
 			<string>hideLabels</string>
 			<key>label</key>
 			<string>Hide Icon Labels</string>
 			<key>PostNotification</key>
-			<string>io.github.ajaidan.mavalryprefs.settingschanged</string>
+			<string>com.ajaidan.mavalryprefs.settingschanged</string>
 		</dict>
 
 		<!-- enable/disable page dots button -->
@@ -34,13 +34,13 @@
 			<key>default</key>
 			<true/>
 			<key>defaults</key>
-			<string>io.github.ajaidan.mavalryprefs</string>
+			<string>com.ajaidan.mavalryprefs</string>
 			<key>key</key>
 			<string>hideDots</string>
 			<key>label</key>
 			<string>Hide Page Dots</string>
 			<key>PostNotification</key>
-			<string>io.github.ajaidan.mavalryprefs.settingschanged</string>
+			<string>com.ajaidan.mavalryprefs.settingschanged</string>
 		</dict>
 
 		<!-- enable/disable transparent dock button -->
@@ -50,13 +50,13 @@
 			<key>default</key>
 			<true/>
 			<key>defaults</key>
-			<string>io.github.ajaidan.mavalryprefs</string>
+			<string>com.ajaidan.mavalryprefs</string>
 			<key>key</key>
 			<string>transDock</string>
 			<key>label</key>
 			<string>Transparent Dock</string>
 			<key>PostNotification</key>
-			<string>io.github.ajaidan.mavalryprefs.settingschanged</string>
+			<string>com.ajaidan.mavalryprefs.settingschanged</string>
 		</dict>
 
 		<!-- enable/disable hiding homebar -->
@@ -66,13 +66,13 @@
 			<key>default</key>
 			<true/>
 			<key>defaults</key>
-			<string>io.github.ajaidan.mavalryprefs</string>
+			<string>com.ajaidan.mavalryprefs</string>
 			<key>key</key>
 			<string>homeBar</string>
 			<key>label</key>
 			<string>Hide Homebar</string>
 			<key>PostNotification</key>
-			<string>io.github.ajaidan.mavalryprefs.settingschanged</string>
+			<string>com.ajaidan.mavalryprefs.settingschanged</string>
 		</dict>
 	</array>
 	<key>title</key>

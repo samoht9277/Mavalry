@@ -6,7 +6,7 @@
 
 - (id)specifiers {
     if(_specifiers == nil) {
-        _specifiers = [[self loadSpecifiersFromPlistName:@"SpringBoard" target:self] retain];
+        _specifiers = [self loadSpecifiersFromPlistName:@"SpringBoard" target:self];
     }
     return _specifiers;
 }
@@ -17,7 +17,7 @@
 
 - (id)specifiers {
     if(_specifiers == nil) {
-        _specifiers = [[self loadSpecifiersFromPlistName:@"Lockscreen" target:self] retain];
+        _specifiers = [self loadSpecifiersFromPlistName:@"Lockscreen" target:self];
     }
     return _specifiers;
 }

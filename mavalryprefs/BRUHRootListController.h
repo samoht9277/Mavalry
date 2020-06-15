@@ -11,3 +11,7 @@
 @interface Lockscreen : PSListController {
 }
 @end
+
+@interface CC : PSListController {
+}
+@end

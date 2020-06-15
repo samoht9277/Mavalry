@@ -112,7 +112,6 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 
     welcomeController.modalPresentationStyle = UIModalPresentationPageSheet; // The same style stock iOS uses.
     welcomeController.modalInPresentation = YES; //Set this to yes if you don't want the user to dismiss this on a down swipe.
-    welcomeController.view.tintColor = [UIColor systemGreenColor]; // If you want a different tint color. If you don't set this, the controller will take the default color.
     [self presentViewController:welcomeController animated:YES completion:nil]; // Don't forget to present it!
 }
 

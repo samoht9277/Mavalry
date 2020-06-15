@@ -14,14 +14,21 @@ extern NSString* const kCAFilterDestOut;
 @property (nonatomic, assign) BOOL allowsGroupBlending;
 @end
 
-BOOL isEnabled;
-BOOL hideLabels;
-BOOL hideDots;
-BOOL transDock;
-BOOL olderNotifs;
-BOOL homeBar;
-BOOL ccLabels;
-int ccLabelsSize;
+// taptic generator
+UIImpactFeedbackGenerator *hapt;
+
+BOOL isEnabled; //general tweak switch
+BOOL hideLabels; //hide app labels switch
+BOOL hideDots; //hide page dots switch
+BOOL transDock; //hide dock background switch
+BOOL olderNotifs; //hide older notifications switch
+BOOL homeBar; //hide home bar switch
+BOOL ccLabels; //enables-disables cc percentage labels
+int ccLabelsSize; //cc labels size
+BOOL hapticVol; //enables-disables haptics when volume buttons are pressed
+float hapticPref; //haptics strength
+int volStep; //volume percentage steps
+
 static void loadPrefs() {
     NSMutableDictionary *prefs = [[NSMutableDictionary alloc] initWithContentsOfFile:PLIST_PATH];
     isEnabled = [prefs objectForKey:@"isEnabled"] ? [[prefs objectForKey:@"isEnabled"] boolValue] : YES;
@@ -32,4 +39,6 @@ static void loadPrefs() {
     homeBar = [prefs objectForKey:@"homeBar"] ? [[prefs objectForKey:@"homeBar"] boolValue] : YES;
     ccLabels = [prefs objectForKey:@"ccLabels"] ? [[prefs objectForKey:@"ccLabels"] boolValue] : YES;
     ccLabelsSize = [[prefs objectForKey:@"ccLabelsSize"] intValue];
+    hapticPref = [[prefs objectForKey:@"hapticPref"] floatValue];
+    volStep = [[prefs objectForKey:@"volStep"] intValue];    
 }

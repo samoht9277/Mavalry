@@ -11,6 +11,7 @@
 
   } else {
     return %orig;
+
   }
 
 }
@@ -106,6 +107,104 @@
 
 %end
 
+//Volume Haptics
+%hook SBVolumeControl 
+
+- (void)increaseVolume {
+	
+	if (isEnabled && hapticVol) {
+
+		%orig;
+
+		UIImpactFeedbackGenerator *hapt = [[UIImpactFeedbackGenerator alloc] init];
+		[hapt prepare];
+
+		if (hapticPref == 1) {
+			hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleLight]; //Light feedback
+
+		} else if (hapticPref == 2) {
+			hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium]; //Medium feedback
+
+		} else if (hapticPref == 3) {
+			hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleHeavy]; //Heavy feedback
+
+		} else if (hapticPref == 4) {
+			hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleSoft]; //Soft feedback
+
+		} else if (hapticPref == 5) {
+			hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleRigid]; //Rigid feedback
+
+		}
+			
+		[hapt impactOccurred];
+
+	} else {
+		return %orig;
+	}
+	
+}
+
+- (void)decreaseVolume {
+	
+	if (isEnabled && hapticVol) {
+
+		%orig;
+
+		UIImpactFeedbackGenerator *hapt = [[UIImpactFeedbackGenerator alloc] init];
+		[hapt prepare];
+
+		if (hapticPref == 1) {
+			hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleLight]; //Light feedback
+
+		} else if (hapticPref == 2) {
+			hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium]; //Medium feedback
+
+		} else if (hapticPref == 3) {
+			hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleHeavy]; //Heavy feedback
+
+		} else if (hapticPref == 4) {
+			hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleSoft]; //Soft feedback
+
+		} else if (hapticPref == 5) {
+			hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleRigid]; //Rigid feedback
+
+		}
+			
+		[hapt impactOccurred];
+
+	} else {
+		return %orig;
+	}
+	
+}
+
+//Volume Steps
+- (float)volumeStepUp {
+
+	if (isEnabled && volStep != 0.0) {
+		return (volStep); //possible values from 0.01 -> 1.0
+
+	} else {
+		return %orig; // orig returns 0.6
+	}
+	
+}
+
+- (float)volumeStepDown {
+
+	if (isEnabled && volStep != 0.0) {
+		return (volStep); //possible values from 0.01 -> 1.0
+
+	} else {
+		return %orig; // orig returns 0.6
+	}
+	
+}
+
+
+%end
+
+
 //CC percentage labels
 %hook CCUIBaseSliderView
 
@@ -121,7 +220,7 @@
 	orig.percentLabel.layer.allowsGroupBlending = NO;
 	orig.percentLabel.layer.allowsGroupOpacity = YES;
 	orig.percentLabel.layer.compositingFilter = kCAFilterDestOut;
-	orig.percentLabel.font = [orig.percentLabel.font fontWithSize:10];
+	orig.percentLabel.font = [orig.percentLabel.font fontWithSize:(ccLabelsSize)];
 	return orig;
 }
 
@@ -160,6 +259,8 @@
 
 		}
 
+	} else {
+		return %orig;
 	}
 
 }

@@ -99,7 +99,7 @@
 		<!-- respring button -->
 		<dict>
 			<key>action</key>
-			<string>respring</string>
+			<string>respringPrompt</string>
 			<key>cell</key>
 			<string>PSButtonCell</string>
 			<key>label</key>

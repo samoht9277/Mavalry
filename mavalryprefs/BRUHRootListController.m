@@ -129,10 +129,32 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 	return _specifiers;
 }
 
+- (void)respringPrompt {
+    AudioServicesPlaySystemSound(1520);
+    UIAlertController *respringAlert = [UIAlertController alertControllerWithTitle:@"Mavalry"
+	message:@"Do you want to respring?"
+	preferredStyle:UIAlertControllerStyleActionSheet];
+
+    UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"Confirm" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+
+            [self respring];
+
+	}];
+
+	UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Decline" style:UIAlertActionStyleCancel handler:nil];
+
+	[respringAlert addAction:confirmAction];
+	[respringAlert addAction:cancelAction];
+
+  AudioServicesPlaySystemSound(1520);
+	[self presentViewController:respringAlert animated:YES completion:nil];
+
+}
+
 -(void)dismissViewControllerAnimated {
 
 }
--(void)setupWelcomeController { 
+-(void)setupWelcomeController {
 
     welcomeController = [[OBWelcomeController alloc] initWithTitle:@"Mavalry" detailText:@"The ultimate SpringBoard customization tweak." icon:[UIImage imageWithContentsOfFile:@"/Library/PreferenceBundles/mavalryprefs.bundle/icon.png"]];
 
@@ -165,7 +187,7 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
     [super viewDidLoad];
 }
 
--(void)dismissWelcomeController { 
+-(void)dismissWelcomeController {
     NSString *path = @"/var/mobile/Library/Preferences/com.ajaidan.mavalryprefs.plist/var/mobile/Library/Preferences/com.ajaidan.mavalryprefs.plist";
     NSMutableDictionary *settings = [NSMutableDictionary dictionary];
     [settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];

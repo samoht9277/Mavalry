@@ -41,6 +41,8 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
     return _specifiers;
 }
 
+@end
+
 @implementation CC
 
 - (id)specifiers {
@@ -97,20 +99,15 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 -(void)dismissViewControllerAnimated {
 
 }
--(void)setupWelcomeController { //This is an example method.
+-(void)setupWelcomeController { 
 
-    // Create the OBWelcomeView with a title, a desription text, and an icon if you wish. Any of this can be nil if it doesn't apply to your view.
     welcomeController = [[OBWelcomeController alloc] initWithTitle:@"Mavalry" detailText:@"The ultimate SpringBoard customization tweak." icon:[UIImage imageWithContentsOfFile:@"/Library/PreferenceBundles/mavalryprefs.bundle/icon.png"]];
 
-    // Create a bulleted item with a title, description, and icon. Any of the parameters can be set to nil if you wish. You can have as little or as many of these as you wish. The view automatically compensates for adjustments.
-    // As written here, systemImageNamed is an iOS 13 feature. It is available in the UIKitCore framework publically. You are welcome to use your own images just as usual. Make sure you set them up with UIImageRenderingModeAlwaysTemplate to allow proper coloring.
     [welcomeController addBulletedListItemWithTitle:@"Simple" description:@"Made with simplicity in mind." image:[UIImage systemImageNamed:@"gear"]];
     [welcomeController addBulletedListItemWithTitle:@"Elegant" description:@"Built to fullfill its purpose easily." image:[UIImage systemImageNamed:@"gear"]];
     [welcomeController addBulletedListItemWithTitle:@"Optimized" description:@"Extensively tested for battery drain." image:[UIImage systemImageNamed:@"gear"]];
     [welcomeController.buttonTray addCaptionText:@"Made with ❤️ by Jaidan A and samoht"];
 
-
-    // Create your button here, set some properties, and add it to the controller.
     OBBoldTrayButton* continueButton = [OBBoldTrayButton buttonWithType:1];
     [continueButton addTarget:self action:@selector(dismissWelcomeController) forControlEvents:UIControlEventTouchUpInside];
     [continueButton setTitle:@"Continue" forState:UIControlStateNormal];
@@ -129,7 +126,7 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
   [self setupWelcomeController];
 }
 
--(void)dismissWelcomeController { // Say goodbye to your controller. :(
+-(void)dismissWelcomeController { 
     [welcomeController dismissViewControllerAnimated:YES completion:nil];
 }
 @end

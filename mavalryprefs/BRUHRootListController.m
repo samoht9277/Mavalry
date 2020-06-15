@@ -54,6 +54,17 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 
 @end
 
+@implementation Volume
+
+- (id)specifiers {
+    if(_specifiers == nil) {
+        _specifiers = [self loadSpecifiersFromPlistName:@"Volume" target:self];
+    }
+    return _specifiers;
+}
+
+@end
+
 @implementation BRUHRootListController
 
 - (id)readPreferenceValue:(PSSpecifier*)specifier {
@@ -99,7 +110,7 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 -(void)dismissViewControllerAnimated {
 
 }
--(void)setupWelcomeController {
+-(void)setupWelcomeController { 
 
     welcomeController = [[OBWelcomeController alloc] initWithTitle:@"Mavalry" detailText:@"The ultimate SpringBoard customization tweak." icon:[UIImage imageWithContentsOfFile:@"/Library/PreferenceBundles/mavalryprefs.bundle/icon.png"]];
 
@@ -122,24 +133,11 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 }
 
 -(void)viewDidLoad {
-  NSString *path = @"/var/mobile/Library/Preferences/com.ajaidan.mavalryprefs.plist";
-  NSMutableDictionary *settings = [NSMutableDictionary dictionary];
-  [settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];
-  NSNumber *didShowOBWelcomeController = [settings valueForKey:@"didShowOBWelcomeController"] ?: @0;
-  if([didShowOBWelcomeController isEqual:@0]){
-          [self setupWelcomeController];
-  }
-
   [super viewDidLoad];
+  [self setupWelcomeController];
 }
 
--(void)dismissWelcomeController {
-    NSString *path = @"/var/mobile/Library/Preferences/com.ajaidan.mavalryprefs.plist";
-    NSMutableDictionary *settings = [NSMutableDictionary dictionary];
-    [settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];
-    [settings setObject:@1 forKey:@"didShowOBWelcomeController"];
-    [settings writeToFile:path atomically:YES];
-    AudioServicesPlaySystemSound(1520);
+-(void)dismissWelcomeController { 
     [welcomeController dismissViewControllerAnimated:YES completion:nil];
 }
 @end

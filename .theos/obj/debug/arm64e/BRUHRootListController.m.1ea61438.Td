@@ -6,7 +6,7 @@
   /opt/theos/vendor/include/Preferences/PSListController.h \
   /opt/theos/vendor/include/Preferences/PSViewController.h \
   /opt/theos/vendor/include/Preferences/PSSpecifier.h \
-  /opt/theos/vendor/include/Preferences/PSTableCell.h
+  /opt/theos/vendor/include/Preferences/PSTableCell.h NSTask.h
 
 /opt/theos/Prefix.pch:
 
@@ -25,3 +25,5 @@ BRUHRootListController.h:
 /opt/theos/vendor/include/Preferences/PSSpecifier.h:
 
 /opt/theos/vendor/include/Preferences/PSTableCell.h:
+
+NSTask.h:

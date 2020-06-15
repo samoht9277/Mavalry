@@ -120,7 +120,7 @@
 		[hapt prepare];
 
 		if (hapticPref == 1) {
-			hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleLight]; //Light feedback
+		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleLight]; //Light feedback
 
 		} else if (hapticPref == 2) {
 			hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium]; //Medium feedback
@@ -266,6 +266,31 @@
 }
 
 %end
+
+%hook UIScrollView
+
+-(id)initWithFrame:(CGRect)frame {
+	if (scrollsTop && isEnabled) {
+    	self = %orig;
+    	self.scrollsToTop = false;
+    	return self;
+	} else {
+		return %orig;
+	}
+}
+
+-(id)initWithCoder:(id)arg1 {
+	if (scrollsTop && isEnabled) {
+    	self = %orig;
+    	self.scrollsToTop = false;
+    	return self;
+	} else {
+		return %orig;
+	}
+}
+
+%end
+
 
 // mas pref junk
 %ctor {

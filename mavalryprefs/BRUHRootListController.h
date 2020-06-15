@@ -19,3 +19,11 @@
 @interface Volume : PSListController {
 }
 @end
+
+@interface Applications : PSListController {
+}
+@end
+
+@interface Reddit : PSListController {
+}
+@end

@@ -65,6 +65,28 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 
 @end
 
+@implementation Applications
+
+- (id)specifiers {
+    if(_specifiers == nil) {
+        _specifiers = [self loadSpecifiersFromPlistName:@"Applications" target:self];
+    }
+    return _specifiers;
+}
+
+@end
+
+@implementation Reddit
+
+- (id)specifiers {
+    if(_specifiers == nil) {
+        _specifiers = [self loadSpecifiersFromPlistName:@"Reddit" target:self];
+    }
+    return _specifiers;
+}
+
+@end
+
 @implementation BRUHRootListController
 
 - (id)readPreferenceValue:(PSSpecifier*)specifier {
@@ -133,11 +155,23 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 }
 
 -(void)viewDidLoad {
-  [super viewDidLoad];
-  [self setupWelcomeController];
+    NSString *path = @"/User/Library/Preferences/com.yourname.yourtweak.plist";
+    NSMutableDictionary *settings = [NSMutableDictionary dictionary];
+    [settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];
+    NSNumber *didShowOBWelcomeController = [settings valueForKey:@"didShowOBWelcomeController"] ?: @0;
+    if([didShowOBWelcomeController isEqual:@0]){
+        [self setupWelcomeController];
+    }
+    [super viewDidLoad];
 }
 
 -(void)dismissWelcomeController { 
+    NSString *path = @"/var/mobile/Library/Preferences/com.ajaidan.mavalryprefs.plist/var/mobile/Library/Preferences/com.ajaidan.mavalryprefs.plist";
+    NSMutableDictionary *settings = [NSMutableDictionary dictionary];
+    [settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];
+    [settings setObject:@1 forKey:@"didShowOBWelcomeController"];
+    [settings writeToFile:path atomically:YES];
+    AudioServicesPlaySystemSound(1520);
     [welcomeController dismissViewControllerAnimated:YES completion:nil];
 }
 @end

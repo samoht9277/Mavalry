@@ -15,3 +15,7 @@
 @interface CC : PSListController {
 }
 @end
+
+@interface Volume : PSListController {
+}
+@end

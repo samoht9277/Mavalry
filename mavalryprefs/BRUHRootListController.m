@@ -155,9 +155,6 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 
 }
 
--(void)dismissViewControllerAnimated {
-
-}
 -(void)setupWelcomeController {
 
     welcomeController = [[OBWelcomeController alloc] initWithTitle:@"Mavalry" detailText:@"The ultimate iOS customization tweak." icon:[UIImage imageWithContentsOfFile:@"/Library/PreferenceBundles/mavalryprefs.bundle/WelcomeIcon.png"]];

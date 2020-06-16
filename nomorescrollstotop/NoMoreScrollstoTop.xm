@@ -10,15 +10,13 @@ static void loadPrefs() {
 }
 
 %hook UIScrollView
-
 -(id)initWithFrame:(CGRect)frame {
 	if (scrollsTop && isEnabled) {
     	self = %orig;
     	self.scrollsToTop = false;
     	return self;
-	} else {
-		return %orig;
 	}
+	return %orig;
 }
 
 -(id)initWithCoder:(id)arg1 {
@@ -26,15 +24,13 @@ static void loadPrefs() {
     	self = %orig;
     	self.scrollsToTop = false;
     	return self;
-	} else {
-		return %orig;
 	}
+	return %orig;
 }
-
 %end
 
 
-// mas pref junk
+// Load prefs
 %ctor {
   loadPrefs();
   CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)loadPrefs, CFSTR("com.ajaidan.mavalryprefs.settingschanged"), NULL, CFNotificationSuspensionBehaviorCoalesce);

@@ -1,11 +1,8 @@
 #import "BRUHRootHeaderView.h"
-
 #import <Preferences/PSSpecifier.h>
 
 @implementation BRUHRootHeaderView
-
-- (instancetype)initWithSpecifier:(PSSpecifier*)specifier
-{
+- (instancetype)initWithSpecifier:(PSSpecifier*)specifier {
 	self = [super init];
 
 	UIImage* headerImage = [UIImage imageNamed:@"PrefHeader" inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:nil];
@@ -16,8 +13,7 @@
 	return self;
 }
 
-- (void)setFrame:(CGRect)frame
-{
+- (void)setFrame:(CGRect)frame {
 	[super setFrame:CGRectMake(frame.origin.x,0,frame.size.width,frame.size.height)];
 
 	CGFloat xOffset = (frame.size.width - _currentWidth) / 2;
@@ -25,11 +21,9 @@
 	_headerImageView.frame = CGRectMake(xOffset,0,_currentWidth,frame.size.height+35);
 }
 
-- (CGFloat)preferredHeightForWidth:(CGFloat)width
-{
+- (CGFloat)preferredHeightForWidth:(CGFloat)width {
 	_currentWidth = width;
 	CGFloat height = width / _aspectRatio;
 	return height - 35;
 }
-
 @end

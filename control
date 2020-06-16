@@ -1,6 +1,6 @@
 Package: com.ajaidan.mavalry
 Name: Mavalry
-Depends: mobilesubstrate
+Depends: mobilesubstrate, firmware (>= 13.0)
 Version: 1.0
 Architecture: iphoneos-arm
 Description: iOS customization, done right.

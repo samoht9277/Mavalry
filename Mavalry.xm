@@ -44,7 +44,7 @@
 
 %end
 
-// No longer notifications hiding
+// No older notifications hiding
 %hook NCNotificationListSectionRevealHintView
 -(void)setFrame:(CGRect)arg1 {
 	if (wantsOlderNotifs && isEnabled) {
@@ -129,7 +129,7 @@
 }
 %end
 
-// CC percentage labels
+// CC percentage labels : Credit to Andy Wiik
 %hook CCUIBaseSliderView
 %property (nonatomic, retain) UILabel *percentLabel;
 

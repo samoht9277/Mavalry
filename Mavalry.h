@@ -24,12 +24,10 @@ extern NSString* const kCAFilterDestOut;
 BOOL isEnabled;
 
 // Booleans
-BOOL wantsCCLabels, wantsHomeBar, wantsOlderNotifs, wantsTransparentDock, wantsHiddenPageDots, wantsHiddenLabels, wantsHapticVol;
+BOOL wantsCCLabels, wantsHomeBar, wantsOlderNotifs, wantsTransparentDock, wantsHiddenPageDots, wantsHiddenLabels;
 
 // Values
 int CCLabelsSize;
-int hapticStrength;
-float volumeStep;
 
 static void loadPrefs() {
 	NSMutableDictionary *prefs = [[NSMutableDictionary alloc] initWithContentsOfFile:PLIST_PATH];
@@ -40,8 +38,5 @@ static void loadPrefs() {
 	wantsTransparentDock = [prefs objectForKey:@"wantsTransparentDock"] ? [[prefs objectForKey:@"wantsTransparentDock"] boolValue] : YES;
 	wantsHiddenPageDots = [prefs objectForKey:@"wantsHiddenPageDots"] ? [[prefs objectForKey:@"wantsHiddenPageDots"] boolValue] : YES;
 	wantsHiddenLabels = [prefs objectForKey:@"wantsHiddenLabels"] ? [[prefs objectForKey:@"wantsHiddenLabels"] boolValue] : YES;
-	wantsHapticVol = [prefs objectForKey:@"wantsHapticVol"] ? [[prefs objectForKey:@"wantsHapticVol"] boolValue] : YES;
 	CCLabelsSize = [[prefs objectForKey:@"CCLabelsSize"] intValue];
-	hapticStrength = [[prefs objectForKey:@"hapticStrength"] intValue];
-	volumeStep = [[prefs objectForKey:@"volumeStep"] floatValue];
 }

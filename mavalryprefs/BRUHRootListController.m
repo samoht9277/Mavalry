@@ -223,8 +223,13 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 }
 
 - (void)sourceLink {
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/ajaidan/mavalry"] options:@{} completionHandler:nil];
 	AudioServicesPlaySystemSound(1520);
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/ajaidan/mavalry"] options:@{} completionHandler:nil];
+}
+
+- (void)donate {
+	AudioServicesPlaySystemSound(1520);
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://paypal.me/ajaidan"] options:@{} completionHandler:nil];
 }
 
 - (NSArray *)specifiers {

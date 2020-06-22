@@ -44,6 +44,23 @@
 
 %end
 
+  
+%hook  SBFolderBackgroundView
+- (id)initWithFrame:(struct CGRect)arg1{
+	if(isEnabled && hideFolderBackground) {
+  		return NULL;
+	} else {
+		return %orig;
+	}
+}
+%end
+
+%hook SBFolderIconImageView
+ - (void)setBackgroundView : (UIView *)backgroundView {
+	if (isEnabled && hideFolderBackground) {}
+}
+%end
+
 // No older notifications hiding
 %hook NCNotificationListSectionRevealHintView
 -(void)setFrame:(CGRect)arg1 {

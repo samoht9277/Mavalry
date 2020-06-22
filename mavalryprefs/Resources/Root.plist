@@ -114,7 +114,7 @@
 			<key>label</key>
 			<string>About</string>
 			<key>footerText</key>
-			<string>Made with ❤️ by Jaidan A and samoht.</string>
+			<string>Made with ❤️ by Jaidan A.</string>
 		</dict>
 
 		<!-- source code button -->
@@ -127,6 +127,16 @@
 			<string>GitHub</string>
 			<key>label</key>
 			<string>Source Code</string>
+		</dict>
+		<dict>
+			<key>action</key>
+			<string>donate</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>icon</key>
+			<string>Donate</string>
+			<key>label</key>
+			<string>Donate</string>
 		</dict>
 
 	</array>

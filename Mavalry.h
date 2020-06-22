@@ -3,7 +3,7 @@
 // Haptic generator
 UIImpactFeedbackGenerator *hapt;
 
-extern NSString* const kCAFilterDestOut;
+extern NSString *const kCAFilterDestOut;
 
 @interface CCUIBaseSliderView : UIView
 @property (nonatomic, retain) UILabel *percentLabel;
@@ -23,7 +23,7 @@ extern NSString* const kCAFilterDestOut;
 BOOL isEnabled;
 
 // Booleans
-BOOL wantsCCLabels, wantsHomeBar, wantsOlderNotifs, wantsTransparentDock, wantsHiddenPageDots, wantsHiddenLabels;
+BOOL wantsCCLabels, wantsHomeBar, wantsOlderNotifs, wantsTransparentDock, wantsHiddenPageDots, wantsHiddenLabels, hideFolderBackground ;
 
 // Values
 int CCLabelsSize;
@@ -37,5 +37,6 @@ static void loadPrefs() {
 	wantsTransparentDock = [prefs objectForKey:@"wantsTransparentDock"] ? [[prefs objectForKey:@"wantsTransparentDock"] boolValue] : YES;
 	wantsHiddenPageDots = [prefs objectForKey:@"wantsHiddenPageDots"] ? [[prefs objectForKey:@"wantsHiddenPageDots"] boolValue] : YES;
 	wantsHiddenLabels = [prefs objectForKey:@"wantsHiddenLabels"] ? [[prefs objectForKey:@"wantsHiddenLabels"] boolValue] : YES;
+	hideFolderBackground = [prefs objectForKey:@"hideFolderBackground"] ? [[prefs objectForKey:@"hideFolderBackground"] boolValue] : YES;
 	CCLabelsSize = [[prefs objectForKey:@"CCLabelsSize"] intValue];
 }

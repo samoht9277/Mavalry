@@ -23,3 +23,7 @@
 @interface Reddit : PSListController {
 }
 @end
+
+@interface Haptics : PSListController {
+}
+@end

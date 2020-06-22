@@ -20,7 +20,6 @@ extern NSString* const kCAFilterDestOut;
 @property (nonatomic, assign, readwrite, getter = isHidden) BOOL hidden;
 @end
 
-// Main switch
 BOOL isEnabled;
 
 // Booleans

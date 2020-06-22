@@ -78,6 +78,17 @@
 			<key>label</key>
 			<string>Applications</string>
 		</dict>
+
+		<!-- Applications subPref -->
+		<dict>
+			<key>cell</key>
+			<string>PSLinkCell</string>
+			<key>detail</key>
+			<string>Haptics</string>
+			<key>label</key>
+			<string>Haptics</string>
+		</dict>
+
 		<!-- apply text label -->
 		<dict>
 			<key>cell</key>

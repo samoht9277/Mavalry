@@ -33,27 +33,27 @@
 			<key>cell</key>
 			<string>PSSliderCell</string>
 			<key>default</key>
-			<integer>10</integer>
+			<integer>5</integer>
 			<key>defaults</key>
 			<string>com.ajaidan.mavalryprefs</string>
 			<key>key</key>
 			<string>CCLabelsSize</string>
 			<key>min</key>
-			<real>5</real>
+			<real>1</real>
 			<key>max</key>
-			<real>20</real>
+			<real>10</real>
 			<key>showValue</key>
 			<true/>
 			<key>isSegmented</key>
 			<true/>
 			<key>segmentCount</key>
-			<integer>3</integer>
+			<integer>1</integer>
 			<key>PostNotification</key>
 			<string>com.ajaidan.mavalryprefs.settingschanged</string>
 		</dict>
 
     </array>
 	<key>title</key>
-	<string>CC</string>
+	<string>Control Center</string>
 </dict>
 </plist>

@@ -6,24 +6,24 @@ UIImpactFeedbackGenerator *hapt;
 extern NSString *const kCAFilterDestOut;
 
 @interface CCUIBaseSliderView : UIView
-@property (nonatomic, retain) UILabel *percentLabel;
+@property(nonatomic, retain) UILabel *percentLabel;
 - (float)value;
 @end
 
 @interface CALayer (Private)
-@property (nonatomic, retain) NSString *compositingFilter;
-@property (nonatomic, assign) BOOL allowsGroupOpacity;
-@property (nonatomic, assign) BOOL allowsGroupBlending;
+@property(nonatomic, retain) NSString *compositingFilter;
+@property(nonatomic, assign) BOOL allowsGroupOpacity;
+@property(nonatomic, assign) BOOL allowsGroupBlending;
 @end
 
 @interface NCNotificationListSectionRevealHintView : UIView
-@property (nonatomic, assign, readwrite, getter = isHidden) BOOL hidden;
+@property(nonatomic, assign, readwrite, getter=isHidden) BOOL hidden;
 @end
 
 BOOL isEnabled;
 
 // Booleans
-BOOL wantsCCLabels, wantsHomeBar, wantsOlderNotifs, wantsTransparentDock, wantsHiddenPageDots, wantsHiddenLabels, hideFolderBackground ;
+BOOL wantsCCLabels, wantsHomeBar, wantsOlderNotifs, wantsTransparentDock, wantsHiddenPageDots, wantsHiddenLabels, hideFolderBackground;
 
 // Values
 int CCLabelsSize;

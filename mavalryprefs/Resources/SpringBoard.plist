@@ -16,7 +16,13 @@
 			<key>cell</key>
 			<string>PSSwitchCell</string>
 			<key>default</key>
-			<true/>
+			<false/>
+			<key>cellClass</key>
+  			<string>BRUHSwitchCell</string>
+  			<key>switchColor</key>
+  			<string>#9836C5</string>
+ 			 <key>switchColorAlpha</key>
+  			<real>1.0</real>
 			<key>defaults</key>
 			<string>com.ajaidan.mavalryprefs</string>
 			<key>key</key>
@@ -32,7 +38,13 @@
 			<key>cell</key>
 			<string>PSSwitchCell</string>
 			<key>default</key>
-			<true/>
+			<false/>
+			<key>cellClass</key>
+  			<string>BRUHSwitchCell</string>
+  			<key>switchColor</key>
+  			<string>#9836C5</string>
+ 			 <key>switchColorAlpha</key>
+  			<real>1.0</real>
 			<key>defaults</key>
 			<string>com.ajaidan.mavalryprefs</string>
 			<key>key</key>
@@ -48,7 +60,13 @@
 			<key>cell</key>
 			<string>PSSwitchCell</string>
 			<key>default</key>
-			<true/>
+			<false/>
+			<key>cellClass</key>
+  			<string>BRUHSwitchCell</string>
+  			<key>switchColor</key>
+  			<string>#9836C5</string>
+ 			 <key>switchColorAlpha</key>
+  			<real>1.0</real>
 			<key>defaults</key>
 			<string>com.ajaidan.mavalryprefs</string>
 			<key>key</key>
@@ -64,7 +82,13 @@
 			<key>cell</key>
 			<string>PSSwitchCell</string>
 			<key>default</key>
-			<true/>
+			<false/>
+			<key>cellClass</key>
+  			<string>BRUHSwitchCell</string>
+  			<key>switchColor</key>
+  			<string>#9836C5</string>
+ 			 <key>switchColorAlpha</key>
+  			<real>1.0</real>
 			<key>defaults</key>
 			<string>com.ajaidan.mavalryprefs</string>
 			<key>key</key>
@@ -80,18 +104,24 @@
 			<key>cell</key>
 			<string>PSSwitchCell</string>
 			<key>default</key>
-			<true/>
+			<false/>
+			<key>cellClass</key>
+  			<string>BRUHSwitchCell</string>
+  			<key>switchColor</key>
+  			<string>#9836C5</string>
+ 			 <key>switchColorAlpha</key>
+  			<real>1.0</real>
 			<key>defaults</key>
 			<string>com.ajaidan.mavalryprefs</string>
 			<key>key</key>
 			<string>wantsHomeBar</string>
 			<key>label</key>
-			<string>Hide wantsHomeBar</string>
+			<string>Hide Home Bar</string>
 			<key>PostNotification</key>
 			<string>com.ajaidan.mavalryprefs.settingschanged</string>
 		</dict>
 	</array>
 	<key>title</key>
-	<string>Mavalry</string>
+	<string>SpringBoard</string>
 </dict>
 </plist>

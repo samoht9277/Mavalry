@@ -1,7 +1,36 @@
 #include "BRUHRootListController.h"
 #import <Preferences/PSSpecifier.h>
+#import <Preferences/PSSwitchTableCell.h>
 #import <AudioToolbox/AudioServices.h>
 #import <spawn.h>
+
+@interface BRUHSwitchCell : PSSwitchTableCell
+-(UIColor *)colorFromHex:(NSString *)hex withAlpha:(CGFloat)alpha;
+@end
+
+@implementation BRUHSwitchCell {
+  UIColor *_switchColor;
+}
+
+  -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)identifier specifier:(PSSpecifier *)specifier {
+    self = [super initWithStyle:style reuseIdentifier:identifier specifier:specifier];
+
+    if(self) {
+      ((UISwitch *)self.control).onTintColor = [self colorFromHex:[specifier propertyForKey:@"switchColor"] withAlpha:[[specifier propertyForKey:@"switchColorAlpha"] floatValue]];
+    }
+
+    return self;
+  }
+
+  -(UIColor *)colorFromHex:(NSString *)hex withAlpha:(CGFloat)alpha {   
+    unsigned rgbValue = 0;
+    NSScanner *scanner = [NSScanner scannerWithString:hex];
+    [scanner setCharactersToBeSkipped:[NSCharacterSet characterSetWithCharactersInString:@"#"]];
+    [scanner scanHexInt:&rgbValue];
+
+    return [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16)) / 255.0 green:((float)((rgbValue & 0x00FF00) >> 8)) / 255.0 blue:((float)((rgbValue & 0x0000FF) >> 0)) / 255.0 alpha:alpha];
+  }
+@end
 
 @interface OBButtonTray : UIView
 - (void)addButton:(id)arg1;
@@ -48,6 +77,7 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 	}
 	return _specifiers;
 }
+
 @end
 
 @implementation Lockscreen
@@ -77,6 +107,7 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 	}
 	return _specifiers;
 }
+
 @end
 
 @implementation CC
@@ -106,6 +137,7 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 	}
 	return _specifiers;
 }
+
 @end
 
 @implementation Applications
@@ -135,6 +167,7 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 	}
 	return _specifiers;
 }
+
 @end
 
 @implementation Reddit
@@ -164,6 +197,7 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 	}
 	return _specifiers;
 }
+
 @end
 
 @implementation Haptics
@@ -193,9 +227,11 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 	}
 	return _specifiers;
 }
+
 @end
 
 @implementation BRUHRootListController
+
 - (id)readPreferenceValue:(PSSpecifier*)specifier {
 	NSString *path = [NSString stringWithFormat:@"/User/Library/Preferences/%@.plist", specifier.properties[@"defaults"]];
 	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
@@ -222,6 +258,25 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 	posix_spawn(&pid, "/usr/bin/sbreload", NULL, NULL, (char* const*)args, NULL);
 }
 
+- (void)respringPrompt {
+	AudioServicesPlaySystemSound(1520);
+	UIAlertController *respringAlert = [UIAlertController alertControllerWithTitle:@"Mavalry"
+	message:@"Do you want to respring?"
+	preferredStyle:UIAlertControllerStyleActionSheet];
+
+	UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"Confirm" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+		[self respring];
+	}];
+
+	UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Decline" style:UIAlertActionStyleCancel handler:nil];
+
+	[respringAlert addAction:confirmAction];
+	[respringAlert addAction:cancelAction];
+
+	AudioServicesPlaySystemSound(1520);
+	[self presentViewController:respringAlert animated:YES completion:nil];
+}
+
 - (void)sourceLink {
 	AudioServicesPlaySystemSound(1520);
 	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/ajaidan/mavalry"] options:@{} completionHandler:nil];
@@ -241,25 +296,6 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 
 - (void)save{
 	[self.view endEditing:YES];
-}
-
-- (void)respringPrompt {
-	AudioServicesPlaySystemSound(1520);
-	UIAlertController *respringAlert = [UIAlertController alertControllerWithTitle:@"Mavalry"
-	message:@"Do you want to respring?"
-	preferredStyle:UIAlertControllerStyleActionSheet];
-
-	UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"Confirm" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
-		[self respring];
-	}];
-
-	UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Decline" style:UIAlertActionStyleCancel handler:nil];
-
-	[respringAlert addAction:confirmAction];
-	[respringAlert addAction:cancelAction];
-
-	AudioServicesPlaySystemSound(1520);
-	[self presentViewController:respringAlert animated:YES completion:nil];
 }
 
 -(void)setupWelcomeController {
@@ -284,6 +320,7 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 }
 
 -(void)viewDidLoad {
+	[super viewDidLoad];
 	NSString *path = @"/var/mobile/Library/Preferences/com.ajaidan.mavalryprefs.plist";
 	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
 	[settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];
@@ -291,7 +328,6 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 	if([didShowOBWelcomeController isEqual:@0]){
 		[self setupWelcomeController];
 	}
-	[super viewDidLoad];
 }
 
 -(void)dismissWelcomeController {

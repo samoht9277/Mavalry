@@ -27,8 +27,9 @@
 - (id)initWithFrame:(CGRect)frame {
 	if (wantsHiddenPageDots && isEnabled) {
 		return nil;
+	} else {
+		return %orig;
 	}
-	return %orig;
 }
 %end
 
@@ -37,17 +38,16 @@
 - (void)setBackgroundAlpha:(double)arg1 {
 	if (wantsTransparentDock && isEnabled) {
 		arg1 = 0;
-	
 	}
 	%orig(arg1);
 }
 
 %end
 
-  
-%hook  SBFolderBackgroundView
+// Hide folder backgrounds  
+%hook SBFolderBackgroundView
 - (id)initWithFrame:(struct CGRect)arg1{
-	if(isEnabled && hideFolderBackground) {
+	if(hideFolderBackground && isEnabled) {
   		return NULL;
 	} else {
 		return %orig;
@@ -57,7 +57,10 @@
 
 %hook SBFolderIconImageView
  - (void)setBackgroundView : (UIView *)backgroundView {
-	if (isEnabled && hideFolderBackground) {}
+	if(hideFolderBackground && isEnabled) {
+	} else {
+		return %orig;
+	}
 }
 %end
 

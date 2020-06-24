@@ -1,13 +1,86 @@
 #import "Mavalry.h"
+#import <spawn.h>
+
+%hook DNDNotificationsService
+
+-(id)initWithClientIdentifier:(id)arg1 {
+	if (isEnabled && moonGone) {
+    	return nil;
+  	} else {
+	  return %orig;
+	}
+}
+%end
+
+%hook SBLockScreenManager
+
+- (void)lockScreenViewControllerDidDismiss {
+	NSString *path = @"/var/mobile/Library/Preferences/com.ajaidan.mavalryprefs.plist";
+	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
+	[settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];
+	NSNumber *didShowOBWelcomeController = [settings valueForKey:@"didShowOBWelcomeController"] ?: @0;
+	if([didShowOBWelcomeController isEqual:@0]) {
+		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"App-prefs:Mavalry"] options:@{} completionHandler:nil];
+	} else {
+		return %orig;
+	}
+}
+%end
+
+%hook SBRootFolderView
+
+-(BOOL)isTodayViewPageHidden {
+	if (isEnabled && noToday) {
+		return true;
+		%orig;
+	} else {
+		return %orig;
+	}
+}
+%end
+
+%hook WGWidgetWrapperView
+-(void)layoutSubviews {
+	if (isEnabled && noToday) {
+		self.hidden = true;
+		%orig;
+	} else {
+		return %orig;
+	}
+}
+%end
+
+%hook SBSearchBar
+-(void)layoutSubviews {
+	if (isEnabled && noToday) {
+		self.hidden = true;
+		%orig;
+	} else {
+		return %orig;
+	}
+}
+%end
+
+%hook WGWidgetListFooterView
+-(void)layoutSubviews {
+	if (isEnabled && noToday) {
+		self.hidden = true;
+		%orig;
+	} else {
+		return %orig;
+	}
+}
+%end
 
 // App label hiding
 %hook SBIconView
 - (void)setLabelHidden:(BOOL)arg1 {
 	if (wantsHiddenLabels && isEnabled) {
 		arg1 = YES;
+		%orig(arg1);
+	} else {
+		return %orig;
 	}
-
-	%orig(arg1);
 }
 %end
 

@@ -45,15 +45,15 @@
 			<key>key</key>
 			<string>CCLabelsSize</string>
 			<key>min</key>
-			<real>1</real>
+			<real>5</real>
 			<key>max</key>
-			<real>10</real>
+			<real>20</real>
 			<key>showValue</key>
 			<true/>
 			<key>isSegmented</key>
 			<true/>
 			<key>segmentCount</key>
-			<integer>10</integer>
+			<integer>20</integer>
 			<key>PostNotification</key>
 			<string>com.ajaidan.mavalryprefs.settingschanged</string>
 		</dict>

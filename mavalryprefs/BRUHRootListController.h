@@ -4,7 +4,7 @@
 }
 @end
 
-@interface SpringBoard : PSListController {
+@interface SB : PSListController {
 }
 @end
 

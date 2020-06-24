@@ -76,29 +76,6 @@
 			<string>com.ajaidan.mavalryprefs.settingschanged</string>
         </dict>
 
-		<!-- Volume steps slider -->
-		<dict>
-			<key>cell</key>
-			<string>PSSliderCell</string>
-			<key>default</key>
-			<integer>1</integer>
-			<key>defaults</key>
-			<string>com.ajaidan.mavalryprefs</string>
-			<key>key</key>
-			<string>volumePref</string>
-			<key>min</key>
-			<real>0</real>
-			<key>max</key>
-			<real>1</real>
-			<key>showValue</key>
-			<true/>
-			<key>isSegmented</key>
-			<true/>
-			<key>segmentCount</key>
-			<integer>100</integer>
-			<key>PostNotification</key>
-			<string>com.ajaidan.mavalryprefs.settingschanged</string>
-		</dict>
 	</array>
 	<key>title</key>
 	<string>Haptics</string>

@@ -5,13 +5,11 @@ UIImpactFeedbackGenerator *hapt;
 
 //prefs
 float hapticPref;
-float volumePref;
 BOOL isEnabled;
 BOOL wantsHapticVol;
 static void loadPrefs() {
     NSMutableDictionary *prefs = [[NSMutableDictionary alloc] initWithContentsOfFile:PLIST_PATH];
     hapticPref = [[prefs objectForKey:@"hapticPref"] floatValue];
-    volumePref = [[prefs objectForKey:@"volumePref"] floatValue];
 	isEnabled = [prefs objectForKey:@"isEnabled"] ? [[prefs objectForKey:@"isEnabled"] boolValue] : YES;
     wantsHapticVol = [prefs objectForKey:@"wantsHapticVol"] ? [[prefs objectForKey:@"wantsHapticVol"] boolValue] : YES;
 }
@@ -82,28 +80,6 @@ static void loadPrefs() {
 
 	} else {
 		return %orig;
-	}
-	
-}
-
-- (float)volumeStepUp {
-
-	if (isEnabled && wantsHapticVol && volumePref != 0.0) {
-		return (volumePref); //possible values from 0.01 -> 1.0
-
-	} else {
-		return %orig; // orig returns 0.6
-	}
-	
-}
-
-- (float)volumeStepDown {
-
-	if (isEnabled && wantsHapticVol && volumePref != 0.0) {
-		return (volumePref); //possible values from 0.01 -> 1.0
-
-	} else {
-		return %orig; // orig returns 0.6
 	}
 	
 }

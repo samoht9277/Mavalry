@@ -44,7 +44,7 @@
 			<key>cell</key>
 			<string>PSLinkCell</string>
 			<key>detail</key>
-			<string>SpringBoard</string>
+			<string>SB</string>
 			<key>label</key>
 			<string>SpringBoard</string>
 		</dict>
@@ -89,24 +89,6 @@
 			<string>Haptics</string>
 		</dict>
 
-		<!-- apply text label -->
-		<dict>
-			<key>cell</key>
-			<string>PSGroupCell</string>
-			<key>label</key>
-			<string>Apply Changes</string>
-		</dict>
-
-		<!-- respring button -->
-		<dict>
-			<key>action</key>
-			<string>respringPrompt</string>
-			<key>cell</key>
-			<string>PSButtonCell</string>
-			<key>label</key>
-			<string>Respring</string>
-		</dict>
-
 		<!-- footer -->
 		<dict>
 			<key>cell</key>
@@ -114,7 +96,7 @@
 			<key>label</key>
 			<string>About</string>
 			<key>footerText</key>
-			<string>Made with ❤️ by ajaidan0.</string>
+			<string>Tweak made with ❤️ by ajaidan0.</string>
 		</dict>
 
 		<!-- source code button -->
@@ -137,6 +119,14 @@
 			<string>Donate</string>
 			<key>label</key>
 			<string>Donate</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string></string>
+			<key>footerText</key>
+			<string>Icons and Volume Haptic made with ❤️ by @samoht#9277.</string>
 		</dict>
 
 	</array>

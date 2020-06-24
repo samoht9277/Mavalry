@@ -34,6 +34,27 @@
 			<string>com.ajaidan.mavalryprefs.settingschanged</string>
 		</dict>
 
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>cellClass</key>
+  			<string>BRUHSwitchCell</string>
+  			<key>switchColor</key>
+  			<string>#9836C5</string>
+ 			 <key>switchColorAlpha</key>
+  			<real>1.0</real>
+			<key>defaults</key>
+			<string>com.ajaidan.mavalryprefs</string>
+			<key>key</key>
+			<string>moonGone</string>
+			<key>label</key>
+			<string>Hide DND Notification</string>
+			<key>PostNotification</key>
+			<string>com.ajaidan.mavalryprefs.settingschanged</string>
+		</dict>
+
 	</array>
 	<key>title</key>
 	<string>Mavalry</string>

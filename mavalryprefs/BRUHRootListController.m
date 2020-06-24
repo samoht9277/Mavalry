@@ -1,8 +1,12 @@
 #include "BRUHRootListController.h"
+#import <Foundation/Foundation.h>
 #import <Preferences/PSSpecifier.h>
 #import <Preferences/PSSwitchTableCell.h>
 #import <AudioToolbox/AudioServices.h>
-#import <spawn.h>
+#import <SpringBoard/SpringBoard.h>
+#import <SpringBoardServices/SBSRestartRenderServerAction.h>
+#import <FrontBoardServices/FBSSystemService.h>
+#import <Preferences/PreferencesAppController.h>
 
 @interface BRUHSwitchCell : PSSwitchTableCell
 -(UIColor *)colorFromHex:(NSString *)hex withAlpha:(CGFloat)alpha;
@@ -50,7 +54,7 @@
 
 OBWelcomeController *welcomeController; // Declaring this here outside of a method will allow the use of it later, such as dismissing.
 
-@implementation SpringBoard
+@implementation SB
 
 - (id)readPreferenceValue:(PSSpecifier*)specifier {
 	NSString *path = [NSString stringWithFormat:@"/User/Library/Preferences/%@.plist", specifier.properties[@"defaults"]];
@@ -73,7 +77,7 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 
 - (id)specifiers {
 	if(_specifiers == nil) {
-		_specifiers = [self loadSpecifiersFromPlistName:@"SpringBoard" target:self];
+		_specifiers = [self loadSpecifiersFromPlistName:@"SB" target:self];
 	}
 	return _specifiers;
 }
@@ -252,10 +256,10 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 }
 
 - (void)respring {
-	AudioServicesPlaySystemSound(1520);
-	pid_t pid;
-	const char* args[] = {"sbreload", NULL, NULL};
-	posix_spawn(&pid, "/usr/bin/sbreload", NULL, NULL, (char* const*)args, NULL);
+	NSURL *returnURL = [NSURL URLWithString:@"prefs:root=Mavalry"]; 
+    SBSRelaunchAction *restartAction;
+    restartAction = [NSClassFromString(@"SBSRelaunchAction") actionWithReason:@"RestartRenderServer" options:SBSRelaunchActionOptionsFadeToBlackTransition targetURL:returnURL];
+    [[NSClassFromString(@"FBSSystemService") sharedService] sendActions:[NSSet setWithObject:restartAction] withResult:nil];
 }
 
 - (void)respringPrompt {
@@ -275,6 +279,23 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 
 	AudioServicesPlaySystemSound(1520);
 	[self presentViewController:respringAlert animated:YES completion:nil];
+}
+
+
+- (void)confirmPrompt {
+	AudioServicesPlaySystemSound(1520);
+	UIAlertController *confirmAlert = [UIAlertController alertControllerWithTitle:@"Mavalry"
+	message:@"Mavalry now needs to respring to enact the tweak changes."
+	preferredStyle:UIAlertControllerStyleActionSheet];
+
+	UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"Confirm" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+		[self  respring];
+	}];
+
+	[confirmAlert addAction:confirmAction];
+
+	AudioServicesPlaySystemSound(1520);
+	[self presentViewController:confirmAlert animated:YES completion:nil];
 }
 
 - (void)sourceLink {
@@ -321,6 +342,12 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 
 -(void)viewDidLoad {
 	[super viewDidLoad];
+	UIBarButtonItem *respringButton = [[UIBarButtonItem alloc]
+                                   initWithTitle:@"Respring"
+                                   style:UIBarButtonItemStylePlain
+                                   target:self
+                                   action:@selector(respringPrompt)];
+	self.navigationItem.rightBarButtonItem = respringButton;
 	NSString *path = @"/var/mobile/Library/Preferences/com.ajaidan.mavalryprefs.plist";
 	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
 	[settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];
@@ -338,5 +365,6 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 	[settings writeToFile:path atomically:YES];
 	AudioServicesPlaySystemSound(1520);
 	[welcomeController dismissViewControllerAnimated:YES completion:nil];
+	[self confirmPrompt];
 }
 @end

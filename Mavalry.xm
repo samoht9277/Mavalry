@@ -39,6 +39,8 @@
 }
 %end
 
+// credit to Dave van Wijk
+
 %hook WGWidgetWrapperView
 -(void)layoutSubviews {
 	if (isEnabled && noToday) {

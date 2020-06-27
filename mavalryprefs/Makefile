@@ -6,7 +6,7 @@ include $(THEOS)/makefiles/common.mk
 
 BUNDLE_NAME = mavalryprefs
 
-mavalryprefs_FILES = BRUHRootListController.m BRUHRootHeaderView.mm
+mavalryprefs_FILES = BRUHRootListController.m BRUHRootHeaderView.mm BRUHSubtitleCell.m
 mavalryprefs_INSTALL_PATH = /Library/PreferenceBundles
 mavalryprefs_FRAMEWORKS = UIKit
 mavalryprefs_PRIVATE_FRAMEWORKS = Preferences OnBoardingKit

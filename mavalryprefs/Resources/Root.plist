@@ -21,6 +21,12 @@
 			<string>PSSwitchCell</string>
 			<key>default</key>
 			<true/>
+			<key>cellClass</key>
+  			<string>BRUHSwitchCell</string>
+  			<key>switchColor</key>
+  			<string>#9836C5</string>
+ 			 <key>switchColorAlpha</key>
+  			<real>1.0</real>
 			<key>defaults</key>
 			<string>com.ajaidan.mavalryprefs</string>
 			<key>key</key>
@@ -89,14 +95,28 @@
 			<string>Haptics</string>
 		</dict>
 
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string></string>
+		</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSLinkCell</string>
+			<key>detail</key>
+			<string>Creds</string>
+			<key>label</key>
+			<string>Credits</string>
+		</dict>
+
 		<!-- footer -->
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
 			<string>About</string>
-			<key>footerText</key>
-			<string>Tweak made with ❤️ by ajaidan0.</string>
 		</dict>
 
 		<!-- source code button -->
@@ -121,12 +141,14 @@
 			<string>Donate</string>
 		</dict>
 		<dict>
+			<key>action</key>
+			<string>discord</string>
 			<key>cell</key>
-			<string>PSGroupCell</string>
+			<string>PSButtonCell</string>
+			<key>icon</key>
+			<string>Discord</string>
 			<key>label</key>
-			<string></string>
-			<key>footerText</key>
-			<string>Icons and Volume Haptic made with ❤️ by @samoht#9277.</string>
+			<string>Discord Support Server</string>
 		</dict>
 
 	</array>

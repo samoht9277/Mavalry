@@ -4,6 +4,9 @@
 }
 @end
 
+@interface Creds : PSListController {
+}
+@end
 @interface SB : PSListController {
 }
 @end

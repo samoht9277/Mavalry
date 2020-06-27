@@ -9,6 +9,7 @@ static void loadPrefs() {
     scrollsTop = [prefs objectForKey:@"scrollsTop"] ? [[prefs objectForKey:@"scrollsTop"] boolValue] : YES;
 }
 
+%group scrollsToTop
 %hook UIScrollView
 -(id)initWithFrame:(CGRect)frame {
 	if (scrollsTop && isEnabled) {
@@ -28,11 +29,12 @@ static void loadPrefs() {
 	return %orig;
 }
 %end
+%end
 
 
 // Load prefs
 %ctor {
-  loadPrefs();
-  CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)loadPrefs, CFSTR("com.ajaidan.mavalryprefs.settingschanged"), NULL, CFNotificationSuspensionBehaviorCoalesce);
-
+	loadPrefs();
+	CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)loadPrefs, CFSTR("com.ajaidan.mavalryprefs.settingschanged"), NULL, CFNotificationSuspensionBehaviorCoalesce);
+		if (isEnabled && scrollsTop) %init(scrollsToTop);
 }

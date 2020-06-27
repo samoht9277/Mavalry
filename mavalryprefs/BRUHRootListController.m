@@ -82,6 +82,19 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 	return _specifiers;
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    UIColor *tintColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
+    [[[[self navigationController] navigationController] navigationBar] setTintColor:tintColor];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [UIView animateWithDuration:1.0 animations:^{
+        [[[[self navigationController] navigationController] navigationBar] setTintColor:nil];
+    }];
+}
+
 @end
 
 @implementation Lockscreen
@@ -110,6 +123,19 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 		_specifiers = [self loadSpecifiersFromPlistName:@"Lockscreen" target:self];
 	}
 	return _specifiers;
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    UIColor *tintColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
+    [[[[self navigationController] navigationController] navigationBar] setTintColor:tintColor];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [UIView animateWithDuration:1.0 animations:^{
+        [[[[self navigationController] navigationController] navigationBar] setTintColor:nil];
+    }];
 }
 
 @end
@@ -142,6 +168,19 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 	return _specifiers;
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    UIColor *tintColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
+    [[[[self navigationController] navigationController] navigationBar] setTintColor:tintColor];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [UIView animateWithDuration:1.0 animations:^{
+        [[[[self navigationController] navigationController] navigationBar] setTintColor:nil];
+    }];
+}
+
 @end
 
 @implementation Applications
@@ -170,6 +209,19 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 		_specifiers = [self loadSpecifiersFromPlistName:@"Applications" target:self];
 	}
 	return _specifiers;
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    UIColor *tintColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
+    [[[[self navigationController] navigationController] navigationBar] setTintColor:tintColor];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [UIView animateWithDuration:1.0 animations:^{
+        [[[[self navigationController] navigationController] navigationBar] setTintColor:nil];
+    }];
 }
 
 @end
@@ -202,6 +254,19 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 	return _specifiers;
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    UIColor *tintColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
+    [[[[self navigationController] navigationController] navigationBar] setTintColor:tintColor];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [UIView animateWithDuration:1.0 animations:^{
+        [[[[self navigationController] navigationController] navigationBar] setTintColor:nil];
+    }];
+}
+
 @end
 
 @implementation Haptics
@@ -230,6 +295,62 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 		_specifiers = [self loadSpecifiersFromPlistName:@"Haptics" target:self];
 	}
 	return _specifiers;
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    UIColor *tintColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
+    [[[[self navigationController] navigationController] navigationBar] setTintColor:tintColor];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [UIView animateWithDuration:1.0 animations:^{
+        [[[[self navigationController] navigationController] navigationBar] setTintColor:nil];
+    }];
+}
+
+@end
+
+@implementation Creds
+
+- (id)readPreferenceValue:(PSSpecifier*)specifier {
+	NSString *path = [NSString stringWithFormat:@"/User/Library/Preferences/%@.plist", specifier.properties[@"defaults"]];
+	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
+	[settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];
+	return (settings[specifier.properties[@"key"]]) ?: specifier.properties[@"default"];
+}
+
+- (void)setPreferenceValue:(id)value specifier:(PSSpecifier*)specifier {
+	NSString *path = [NSString stringWithFormat:@"/User/Library/Preferences/%@.plist", specifier.properties[@"defaults"]];
+	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
+	[settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];
+	[settings setObject:value forKey:specifier.properties[@"key"]];
+	[settings writeToFile:path atomically:YES];
+	CFStringRef notificationName = (__bridge CFStringRef)specifier.properties[@"PostNotification"];
+	if (notificationName) {
+		CFNotificationCenterPostNotification(CFNotificationCenterGetDarwinNotifyCenter(), notificationName, NULL, NULL, YES);
+	}
+}
+
+- (id)specifiers {
+	if(_specifiers == nil) {
+		_specifiers = [self loadSpecifiersFromPlistName:@"Creds" target:self];
+	}
+	return _specifiers;
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    UIColor *tintColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
+    [[[[self navigationController] navigationController] navigationBar] setTintColor:tintColor];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [UIView animateWithDuration:1.0 animations:^{
+        [[[[self navigationController] navigationController] navigationBar] setTintColor:nil];
+    }];
 }
 
 @end
@@ -308,6 +429,12 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://paypal.me/ajaidan"] options:@{} completionHandler:nil];
 }
 
+- (void)discord {
+	AudioServicesPlaySystemSound(1520);
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://discord.gg/w8pvXJd"] options:@{} completionHandler:nil];
+}
+
+
 - (NSArray *)specifiers {
 	if (!_specifiers) {
 		_specifiers = [self loadSpecifiersFromPlistName:@"Root" target:self];
@@ -337,13 +464,27 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 
 	welcomeController.modalPresentationStyle = UIModalPresentationPageSheet; // The same style stock iOS uses.
 	welcomeController.modalInPresentation = YES; //Set this to yes if you don't want the user to dismiss this on a down swipe.
+	welcomeController.view.tintColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
 	[self presentViewController:welcomeController animated:YES completion:nil]; // Don't forget to present it!
 }
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    UIColor *tintColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
+    [[[[self navigationController] navigationController] navigationBar] setTintColor:tintColor];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [UIView animateWithDuration:1.0 animations:^{
+        [[[[self navigationController] navigationController] navigationBar] setTintColor:nil];
+    }];
+} 
 
 -(void)viewDidLoad {
 	[super viewDidLoad];
 	UIBarButtonItem *respringButton = [[UIBarButtonItem alloc]
-                                   initWithTitle:@"Respring"
+                                   initWithTitle:@"Apply"
                                    style:UIBarButtonItemStylePlain
                                    target:self
                                    action:@selector(respringPrompt)];

@@ -1,17 +1,7 @@
 #import "Mavalry.h"
 #import <spawn.h>
 
-%hook DNDNotificationsService
-
--(id)initWithClientIdentifier:(id)arg1 {
-	if (isEnabled && moonGone) {
-    	return nil;
-  	} else {
-	  return %orig;
-	}
-}
-%end
-
+// Check if tweak is set up
 %hook SBLockScreenManager
 
 - (void)lockScreenViewControllerDidDismiss {
@@ -27,141 +17,126 @@
 }
 %end
 
+%group LSnoToday
+
+%hook SBMainDisplayPolicyAggregator
+
+-(BOOL)_allowsCapabilityLockScreenTodayViewWithExplanation:(id*)arg1 {
+    return false;
+}
+
+-(BOOL)_allowsCapabilityTodayViewWithExplanation:(id*)arg1 {
+    return false;
+}
+
+%end
+%end
+
+%group HSnoToday
 %hook SBRootFolderView
 
--(BOOL)isTodayViewPageHidden {
-	if (isEnabled && noToday) {
-		return true;
-		%orig;
-	} else {
-		return %orig;
-	}
+-(unsigned long long)_minusPageCount {
+    return false;
 }
+
+-(void)_layoutSubviewsForTodayView {
+    %orig;
+    [self todayViewController].view.hidden = false;
+}
+
+-(void)beginPageStateTransitionToState:(long long)arg1 animated:(BOOL)arg2 interactive:(BOOL)arg3  {
+    if (arg1 == 2) return; 
+    %orig;
+}
+
+%end
 %end
 
-// credit to Dave van Wijk
+%group HSnoSpotlight
+%hook SBRootFolderView
 
-%hook WGWidgetWrapperView
--(void)layoutSubviews {
-	if (isEnabled && noToday) {
-		self.hidden = true;
-		%orig;
-	} else {
-		return %orig;
-	}
+-(void)beginPageStateTransitionToState:(long long)arg1 animated:(BOOL)arg2 interactive:(BOOL)arg3  {
+    if (arg1 == 3) return; 
+    %orig;
 }
+
+%end
 %end
 
-%hook SBSearchBar
--(void)layoutSubviews {
-	if (isEnabled && noToday) {
-		self.hidden = true;
-		%orig;
-	} else {
-		return %orig;
-	}
+%group DNDNotifs
+%hook DNDNotificationsService
+
+-(id)initWithClientIdentifier:(id)arg1 {
+    return nil;
 }
 %end
-
-%hook WGWidgetListFooterView
--(void)layoutSubviews {
-	if (isEnabled && noToday) {
-		self.hidden = true;
-		%orig;
-	} else {
-		return %orig;
-	}
-}
 %end
 
-// App label hiding
+%group HideLabels
 %hook SBIconView
 - (void)setLabelHidden:(BOOL)arg1 {
-	if (wantsHiddenLabels && isEnabled) {
-		arg1 = YES;
-		%orig(arg1);
-	} else {
-		return %orig;
-	}
+	arg1 = YES;
+	%orig(arg1);
 }
 %end
+%end
 
-// Page dots hiding
+%group PageDots
 %hook SBIconListPageControl
 - (id)initWithFrame:(CGRect)frame {
-	if (wantsHiddenPageDots && isEnabled) {
-		return nil;
-
-	}
-	return %orig;
+	return nil;
 }
-
 %end
 
 %hook CSPageControl
 - (id)initWithFrame:(CGRect)frame {
-	if (wantsHiddenPageDots && isEnabled) {
-		return nil;
-	} else {
-		return %orig;
-	}
+	return nil;
 }
 %end
+%end
 
-// Begin hiding dock BG
+%group DockBG
 %hook SBDockView
 - (void)setBackgroundAlpha:(double)arg1 {
-	if (wantsTransparentDock && isEnabled) {
-		arg1 = 0;
-	}
+	arg1 = 0;
 	%orig(arg1);
 }
 
 %end
+%end
 
-// Hide folder backgrounds  
+%group FolderBG 
 %hook SBFolderBackgroundView
 - (id)initWithFrame:(struct CGRect)arg1{
-	if(hideFolderBackground && isEnabled) {
-  		return NULL;
-	} else {
-		return %orig;
-	}
+  	return NULL;
 }
 %end
 
 %hook SBFolderIconImageView
- - (void)setBackgroundView : (UIView *)backgroundView {
-	if(hideFolderBackground && isEnabled) {
-	} else {
-		return %orig;
-	}
-}
+ - (void)setBackgroundView : (UIView *)backgroundView {}
+%end
 %end
 
-// No older notifications hiding
+%group OlderNotifs
 %hook NCNotificationListSectionRevealHintView
 -(void)setFrame:(CGRect)arg1 {
-	if (wantsOlderNotifs && isEnabled) {
-		self.hidden = YES;
-	}
+	self.hidden = YES;
 	%orig;
 }
-
+%end
 %end
 
-// Hide homebar
+%group HomeBar
 %hook MTLumaDodgePillSettings
 - (void)setHeight:(double)arg1 {
-	if (wantsHomeBar && isEnabled) {
-		arg1 = 0;
-	}
+	arg1 = 0;
 	%orig(arg1);
 }
 
 %end
+%end
 
-// CC percentage labels : Credit to Andy Wiik
+%group CCPercentage
 %hook CCUIBaseSliderView
 %property (nonatomic, retain) UILabel *percentLabel;
 
@@ -182,40 +157,50 @@
 - (void)layoutSubviews {
 	%orig;
 
-	if (isEnabled && wantsCCLabels) {
-		if ([self valueForKey:@"_glyphPackageView"]) {
-			UIView *glyphView = (UIView *)[self valueForKey:@"_glyphPackageView"];
-			glyphView.center = CGPointMake(self.bounds.size.width*0.5,self.bounds.size.height*0.5);
-			if (self.percentLabel) {
-				if ([self.percentLabel superview] != glyphView) {
-					if ([self.percentLabel superview]) [self.percentLabel removeFromSuperview];
-					[glyphView addSubview:self.percentLabel];
-				}
-
-				if ([self.percentLabel superview] == glyphView) {
-					self.percentLabel.layer.allowsGroupBlending = NO;
-					self.percentLabel.layer.allowsGroupOpacity = YES;
-					self.percentLabel.layer.compositingFilter = kCAFilterDestOut;
-					self.percentLabel.text = [[NSString stringWithFormat:@"%.f", [self value]*100] stringByAppendingString:@"%"];
-					[self.percentLabel sizeToFit];
-					self.percentLabel.center = [self convertPoint:CGPointMake(self.bounds.size.width*0.5, self.bounds.size.height*0.85) toView:glyphView];
-
-				}
+	if ([self valueForKey:@"_glyphPackageView"]) {
+		UIView *glyphView = (UIView *)[self valueForKey:@"_glyphPackageView"];
+		glyphView.center = CGPointMake(self.bounds.size.width*0.5,self.bounds.size.height*0.5);
+		if (self.percentLabel) {
+			if ([self.percentLabel superview] != glyphView) {
+				if ([self.percentLabel superview]) [self.percentLabel removeFromSuperview];
+				[glyphView addSubview:self.percentLabel];
 			}
 
-			if ([self valueForKey:@"_compensatingGlyphPackageView"]) {
-				UIView *compensatingGlyphView = [self valueForKey:@"_compensatingGlyphPackageView"];
-				compensatingGlyphView.center = glyphView.center;
+			if ([self.percentLabel superview] == glyphView) {
+				self.percentLabel.layer.allowsGroupBlending = NO;
+				self.percentLabel.layer.allowsGroupOpacity = YES;
+				self.percentLabel.layer.compositingFilter = kCAFilterDestOut;
+				self.percentLabel.text = [[NSString stringWithFormat:@"%.f", [self value]*100] stringByAppendingString:@"%"];
+				[self.percentLabel sizeToFit];
+				self.percentLabel.center = [self convertPoint:CGPointMake(self.bounds.size.width*0.5, self.bounds.size.height*0.85) toView:glyphView];
 
 			}
+
+		if ([self valueForKey:@"_compensatingGlyphPackageView"]) {
+			UIView *compensatingGlyphView = [self valueForKey:@"_compensatingGlyphPackageView"];
+			compensatingGlyphView.center = glyphView.center;
 
 		}
 	}
 }
+}
+%end
 %end
 
-// Loads prefs
+// Loads prefs and inits
 %ctor {
+	%init;
 	loadPrefs();
 	CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)loadPrefs, CFSTR("com.ajaidan.mavalryprefs.settingschanged"), NULL, CFNotificationSuspensionBehaviorCoalesce);
+		if (isEnabled && moonGone) %init(DNDNotifs);
+		if (isEnabled && wantsHiddenLabels) %init(HideLabels);
+		if (isEnabled && wantsHiddenPageDots) %init(PageDots);
+		if (isEnabled && wantsTransparentDock) %init(DockBG);
+		if (isEnabled && hideFolderBackground) %init(FolderBG);
+		if (isEnabled && wantsOlderNotifs) %init(OlderNotifs);
+		if (isEnabled && wantsHomeBar) %init(HomeBar);
+		if (isEnabled && wantsCCLabels) %init(CCPercentage);
+		if (isEnabled && noTodayHS) %init(HSnoToday);
+		if (isEnabled && noTodayLS) %init(LSnoToday);
+		if (isEnabled && noSpotlight) %init(HSnoSpotlight);
 }

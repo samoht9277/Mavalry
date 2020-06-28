@@ -353,6 +353,16 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
     }];
 }
 
+- (void)ajaidanLink {
+	AudioServicesPlaySystemSound(1520);
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/ajaidan"] options:@{} completionHandler:nil];
+}
+
+- (void)wildfireLink {
+	AudioServicesPlaySystemSound(1520);
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"wldfire.ca"] options:@{} completionHandler:nil];
+}
+
 @end
 
 @implementation BRUHRootListController

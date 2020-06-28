@@ -2,6 +2,8 @@ ARCHS = arm64 arm64e
 
 export SDKVERSION = 13.4
 
+TARGET = ::13.0
+
 INSTALL_TARGET_PROCESSES = SpringBoard
 
 include $(THEOS)/makefiles/common.mk

@@ -187,6 +187,110 @@
 %end
 %end
 
+%group Screenshot
+%hook SpringBoard
+-(void)takeScreenshot {
+
+	%orig;
+
+	UIImpactFeedbackGenerator *hapt = [[UIImpactFeedbackGenerator alloc] init];
+	[hapt prepare];
+
+	if (screenshotPref == 1) {
+		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium]; //Medium feedback
+
+	} else if (screenshotPref == 2) {
+		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium]; //Medium feedback
+
+	} else if (screenshotPref == 3) {
+		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleHeavy]; //Heavy feedback
+
+	} else if (screenshotPref == 4) {
+		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleSoft]; //Soft feedback
+
+	} else if (screenshotPref == 5) {
+		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleRigid]; //Rigid feedback
+
+	}
+			
+	[hapt impactOccurred];
+}
+%end
+%end
+
+%group HapticVolume
+%hook SBVolumeControl 
+
+- (void)increaseVolume {
+
+	%orig;
+
+	UIImpactFeedbackGenerator *hapt = [[UIImpactFeedbackGenerator alloc] init];
+	[hapt prepare];
+
+	if (hapticPref == 1) {
+		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium]; //Medium feedback
+
+	} else if (hapticPref == 2) {
+		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium]; //Medium feedback
+
+	} else if (hapticPref == 3) {
+		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleHeavy]; //Heavy feedback
+
+	} else if (hapticPref == 4) {
+		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleSoft]; //Soft feedback
+
+	} else if (hapticPref == 5) {
+		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleRigid]; //Rigid feedback
+
+	}
+			
+	[hapt impactOccurred];
+	
+}
+
+- (void)decreaseVolume {
+
+	%orig;
+
+	UIImpactFeedbackGenerator *hapt = [[UIImpactFeedbackGenerator alloc] init];
+	[hapt prepare];
+
+	if (hapticPref == 1) {
+		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleLight]; //Light feedback
+
+	} else if (hapticPref == 2) {
+		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium]; //Medium feedback
+
+	} else if (hapticPref == 3) {
+		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleHeavy]; //Heavy feedback
+
+	} else if (hapticPref == 4) {
+		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleSoft]; //Soft feedback
+
+	} else if (hapticPref == 5) {
+		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleRigid]; //Rigid feedback
+
+	}
+			
+	[hapt impactOccurred];
+	
+}
+%end
+%end
+
+%group VolumeStep
+%hook SBVolumeControl
+- (float)volumeStepUp {
+    return (volumePref); //possible values from 0.01 -> 1.0 
+}
+
+- (float)volumeStepDown {
+    return (volumePref);
+}
+%end
+%end
+
 // Loads prefs and inits
 %ctor {
 	%init;
@@ -202,5 +306,8 @@
 		if (isEnabled && wantsCCLabels) %init(CCPercentage);
 		if (isEnabled && noTodayHS) %init(HSnoToday);
 		if (isEnabled && noTodayLS) %init(LSnoToday);
+		if (isEnabled && wantsHapticScreenshot) %init(Screenshot);
+		if (isEnabled && wantsHapticVol) %init(HapticVolume);
+		if (isEnabled && volumePref != 0.0) %init(VolumeStep);
 		if (isEnabled && noSpotlight) %init(HSnoSpotlight);
 }

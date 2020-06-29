@@ -13,38 +13,48 @@
 		</dict>
 
         <dict>
+            <key>cell</key>
+            <string>PSButtonCell</string>
+            <key>icon</key>
+            <string>github.png</string>
             <key>action</key>
             <string>ajaidanLink</string>
-            <key>cell</key>
-            <string>PSTableCell</string>
             <key>cellClass</key>
             <string>BRUHSubtitleCell</string>
             <key>label</key>
+            <string>Jaidan A</string>
+            <key>details</key>
             <string>Tweak</string>
-            <key>details</key>
-            <string>Tweak was made by ajaidan0.</string>
         </dict>
 
         <dict>
             <key>cell</key>
-            <string>PSTableCell</string>
+            <string>PSButtonCell</string>
+            <key>icon</key>
+            <string>reddit.png</string>
+            <key>action</key>
+            <string>samohtLink</string>
             <key>cellClass</key>
             <string>BRUHSubtitleCell</string>
             <key>label</key>
-            <string>Icons and Haptics</string>
+            <string>samoht</string>
             <key>details</key>
-            <string>Icons and Haptics were made by samoht.</string>
+            <string>Artworks and Volume Haptics</string>
         </dict>
 
         <dict>
             <key>cell</key>
-            <string>PSTableCell</string>
+            <string>PSButtonCell</string>
+            <key>icon</key>
+            <string>github.png</string>
+            <key>action</key>
+            <string>andyLink</string>
             <key>cellClass</key>
             <string>BRUHSubtitleCell</string>
             <key>label</key>
+            <string>Andrew Wiik</string>
+            <key>details</key>
             <string>Slider Percentages</string>
-            <key>details</key>
-            <string>Slider Percentages were made by Andy Wiik.</string>
         </dict>
 
         <dict>
@@ -55,16 +65,18 @@
 		</dict>
 
         <dict>
+            <key>cell</key>
+            <string>PSButtonCell</string>
+            <key>icon</key>
+            <string>creds.png</string>
             <key>action</key>
             <string>wildfireLink</string>
-            <key>cell</key>
-            <string>PSTableCell</string>
             <key>cellClass</key>
             <string>BRUHSubtitleCell</string>
             <key>label</key>
-            <string>Sponsored by Wildfire</string>
+            <string>Wildfire</string>
             <key>details</key>
-            <string>Click on this button to bring you to the website!</string>
+            <string>Click on this to bring you to their website!</string>
         </dict>
 
     </array>

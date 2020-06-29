@@ -49,6 +49,8 @@
 		<dict>
 			<key>cell</key>
 			<string>PSLinkCell</string>
+			<key>icon</key>
+			<string>homescreen</string>
 			<key>detail</key>
 			<string>SB</string>
 			<key>label</key>
@@ -59,6 +61,8 @@
 		<dict>
 			<key>cell</key>
 			<string>PSLinkCell</string>
+			<key>icon</key>
+			<string>lockscreen</string>
 			<key>detail</key>
 			<string>Lockscreen</string>
 			<key>label</key>
@@ -69,6 +73,8 @@
 		<dict>
 			<key>cell</key>
 			<string>PSLinkCell</string>
+			<key>icon</key>
+			<string>cc</string>
 			<key>detail</key>
 			<string>CC</string>
 			<key>label</key>
@@ -79,16 +85,8 @@
 		<dict>
 			<key>cell</key>
 			<string>PSLinkCell</string>
-			<key>detail</key>
-			<string>Applications</string>
-			<key>label</key>
-			<string>Applications</string>
-		</dict>
-
-		<!-- Applications subPref -->
-		<dict>
-			<key>cell</key>
-			<string>PSLinkCell</string>
+			<key>icon</key>
+			<string>haptics</string>
 			<key>detail</key>
 			<string>Haptics</string>
 			<key>label</key>
@@ -105,6 +103,8 @@
 		<dict>
 			<key>cell</key>
 			<string>PSLinkCell</string>
+			<key>icon</key>
+			<string>creds</string>
 			<key>detail</key>
 			<string>Creds</string>
 			<key>label</key>
@@ -126,7 +126,7 @@
 			<key>cell</key>
 			<string>PSButtonCell</string>
 			<key>icon</key>
-			<string>GitHub</string>
+			<string>github</string>
 			<key>label</key>
 			<string>Source Code</string>
 		</dict>
@@ -136,7 +136,7 @@
 			<key>cell</key>
 			<string>PSButtonCell</string>
 			<key>icon</key>
-			<string>Donate</string>
+			<string>donations</string>
 			<key>label</key>
 			<string>Donate</string>
 		</dict>
@@ -146,7 +146,7 @@
 			<key>cell</key>
 			<string>PSButtonCell</string>
 			<key>icon</key>
-			<string>Discord</string>
+			<string>discord</string>
 			<key>label</key>
 			<string>Discord Support Server</string>
 		</dict>

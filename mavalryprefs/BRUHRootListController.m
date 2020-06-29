@@ -360,7 +360,17 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 
 - (void)wildfireLink {
 	AudioServicesPlaySystemSound(1520);
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"wldfire.ca"] options:@{} completionHandler:nil];
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://wldfire.ca"] options:@{} completionHandler:nil];
+}
+
+- (void)samohtLink {
+	AudioServicesPlaySystemSound(1520);
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://reddit.com/u/bobbyboys301"] options:@{} completionHandler:nil];
+}
+
+- (void)andyLink {
+	AudioServicesPlaySystemSound(1520);
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/andrewwiik"] options:@{} completionHandler:nil];
 }
 
 @end

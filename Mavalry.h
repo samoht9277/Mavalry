@@ -31,7 +31,10 @@ extern NSString *const kCAFilterDestOut;
 BOOL isEnabled;
 
 // Booleans
-BOOL wantsCCLabels, wantsHomeBar, wantsOlderNotifs, wantsTransparentDock, wantsHiddenPageDots, wantsHiddenLabels, hideFolderBackground, moonGone, noTodayLS, noTodayHS, noSpotlight;
+BOOL wantsCCLabels, wantsHomeBar, wantsOlderNotifs, wantsTransparentDock, wantsHiddenPageDots, wantsHiddenLabels, hideFolderBackground, moonGone, noTodayLS, noTodayHS, noSpotlight, wantsHapticVol, wantsHapticScreenshot;
+
+// Floats
+float hapticPref, volumePref, screenshotPref;
 
 // Values
 int CCLabelsSize;
@@ -50,6 +53,11 @@ static void loadPrefs()
     moonGone = [prefs objectForKey:@"moonGone"] ? [[prefs objectForKey:@"moonGone"] boolValue] : YES;
     noTodayLS = [prefs objectForKey:@"noTodayLS"] ? [[prefs objectForKey:@"noTodayLS"] boolValue] : YES;
     noTodayHS = [prefs objectForKey:@"noTodayHS"] ? [[prefs objectForKey:@"noTodayHS"] boolValue] : YES;
+    wantsHapticVol = [prefs objectForKey:@"wantsHapticVol"] ? [[prefs objectForKey:@"wantsHapticVol"] boolValue] : YES;
+    wantsHapticScreenshot = [prefs objectForKey:@"wantsHapticScreenshot"] ? [[prefs objectForKey:@"wantsHapticScreenshot"] boolValue] : YES;
     noSpotlight = [prefs objectForKey:@"noSpotlight"] ? [[prefs objectForKey:@"noSpotlight"] boolValue] : YES;
+    hapticPref = [[prefs objectForKey:@"hapticPref"] floatValue];
+    screenshotPref = [[prefs objectForKey:@"screenshotPref"] floatValue];
+    volumePref = [[prefs objectForKey:@"volumePref"] floatValue];
     CCLabelsSize = [[prefs objectForKey:@"CCLabelsSize"] intValue];
 }

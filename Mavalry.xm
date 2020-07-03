@@ -296,18 +296,20 @@
 	%init;
 	loadPrefs();
 	CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)loadPrefs, CFSTR("com.ajaidan.mavalryprefs.settingschanged"), NULL, CFNotificationSuspensionBehaviorCoalesce);
-		if (isEnabled && moonGone) %init(DNDNotifs);
-		if (isEnabled && wantsHiddenLabels) %init(HideLabels);
-		if (isEnabled && wantsHiddenPageDots) %init(PageDots);
-		if (isEnabled && wantsTransparentDock) %init(DockBG);
-		if (isEnabled && hideFolderBackground) %init(FolderBG);
-		if (isEnabled && wantsOlderNotifs) %init(OlderNotifs);
-		if (isEnabled && wantsHomeBar) %init(HomeBar);
-		if (isEnabled && wantsCCLabels) %init(CCPercentage);
-		if (isEnabled && noTodayHS) %init(HSnoToday);
-		if (isEnabled && noTodayLS) %init(LSnoToday);
-		if (isEnabled && wantsHapticScreenshot) %init(Screenshot);
-		if (isEnabled && wantsHapticVol) %init(HapticVolume);
-		if (isEnabled && volumePref != 0.0) %init(VolumeStep);
-		if (isEnabled && noSpotlight) %init(HSnoSpotlight);
+		if (isEnabled) {
+			if (moonGone) %init(DNDNotifs);
+			if (wantsHiddenLabels) %init(HideLabels);
+			if (wantsHiddenPageDots) %init(PageDots);
+			if (wantsTransparentDock) %init(DockBG);
+			if (hideFolderBackground) %init(FolderBG);
+			if (wantsOlderNotifs) %init(OlderNotifs);
+			if (wantsHomeBar) %init(HomeBar);
+			if (wantsCCLabels) %init(CCPercentage);
+			if (noTodayHS) %init(HSnoToday);
+			if (noTodayLS) %init(LSnoToday);
+			if (wantsHapticScreenshot) %init(Screenshot);
+			if (wantsHapticVol) %init(HapticVolume);
+			if (volumePref != 0.0) %init(VolumeStep);
+			if (noSpotlight) %init(HSnoSpotlight);
+		} else {}
 }
